@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stages — Hugo CANU</title>
+  <link rel="icon" type="image/x-icon" href="favicon_io/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ─── Navbar ─── -->
+  <nav class="navbar">
+    <a class="navbar-brand" href="index.html">HC<span class="acc">.</span></a>
+    <ul class="navbar-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="veille.html">Veille</a></li>
+      <li><a href="stages.html">Stages</a></li>
+      <li><a href="realisations.html">Réalisations</a></li>
+      <li><a href="rectorat.html">Rectorat</a></li>
+    </ul>
+    <a class="navbar-gh" href="https://github.com/HCWhite1" target="_blank" rel="noopener" aria-label="GitHub">
+      <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+    </a>
+  </nav>
+
+  <div class="page-wrapper">
+    <div class="container">
+
+      <!-- ─── Page hero ─── -->
+      <div class="page-hero">
+        <p class="label">// Expériences professionnelles</p>
+        <h1>Mes <span style="color:var(--accent)">Stages</span></h1>
+        <p>Deux périodes en entreprise réalisées dans le cadre du BTS SIO SLAM.</p>
+      </div>
+
+      <!-- ─── Tabs ─── -->
+      <section class="section" style="padding-top:2.5rem;">
+        <div class="tabs">
+          <button class="tab-btn" data-tab="stage1">// 1ère année</button>
+          <button class="tab-btn active" data-tab="stage2">// 2ème année</button>
+        </div>
+
+        <!-- ══════════ STAGE 2 ══════════ -->
+        <div class="tab-pane active" id="stage2">
+
+          <!-- Meta -->
+          <div class="stage-meta reveal">
+            <div class="stage-meta-item">
+              <span class="meta-label">Entreprise</span>
+              <span class="meta-value">Seine Normandie Agglomération</span>
+            </div>
+            <div class="stage-meta-item">
+              <span class="meta-label">Service</span>
+              <span class="meta-value">Direction du Numérique et de l'Informatique</span>
+            </div>
+            <div class="stage-meta-item">
+              <span class="meta-label">Période</span>
+              <span class="meta-value">6 jan. 2026 — 13 fév. 2026</span>
+            </div>
+            <div class="stage-meta-item">
+              <span class="meta-label">Durée</span>
+              <span class="meta-value">6 semaines</span>
+            </div>
+          </div>
+
+          <!-- Contexte -->
+          <div class="stage-section reveal">
+            <p class="stage-section-label">Contexte</p>
+            <div class="card">
+              <p class="profile-text">
+                Second stage au sein de la même structure : la Communauté d'Agglomération Seine Normandie Agglomération, un EPCI normand. La DNI est un service mutualisé intervenant pour SNA, la Ville de Vernon, le CIAS, le CCAS et l'OTC. J'avais déjà une bonne connaissance du terrain, ce qui m'a permis d'être opérationnel immédiatement et de prendre en charge des projets plus ambitieux.
+              </p>
+            </div>
+          </div>
+
+          <!-- Projet 1 -->
+          <div class="stage-section reveal">
+            <p class="stage-section-label">Projet 1 — 2 semaines</p>
+            <div class="stage-project">
+              <p class="stage-project-num">// Évolution</p>
+              <p class="stage-project-title">Site Annuaire interne — v2</p>
+              <p class="stage-project-desc">
+                Reprise et amélioration du site annuaire développé lors de mon premier stage. Suite à un retour des agents utilisateurs, j'ai apporté un ensemble de modifications significatives.
+              </p>
+              <ul class="feature-list">
+                <li>Import CSV étendu au format <strong>XLSX</strong>, avec création automatique des entités/services/pôles/directions inexistants</li>
+                <li><strong>Export Excel</strong> de l'annuaire complet (réservé aux comptes avec droits)</li>
+                <li>Migration des <strong>logs</strong> d'un fichier serveur vers une interface web consultable par mois</li>
+                <li>Page de <strong>gestion de la structure organisationnelle</strong> (ajout, modification, suppression d'entités/services/pôles)</li>
+                <li>Système de <strong>mots-clés</strong> de recherche (ex : "paye" pour retrouver "Rémunération et pilotage des absences")</li>
+                <li>Sécurisation : <strong>variables d'environnement</strong> pour les credentials DB, <strong>certificat HTTPS</strong> sur le serveur</li>
+                <li>Coloration par pôle désactivée par défaut, ré-activable via bouton</li>
+              </ul>
+              <p class="stage-stack-label">Stack</p>
+              <div class="skills-grid">
+                <span class="skill-chip"><img src="Images/Logos/Développement/LangagesDeProgrammation/Logo_Langage_PHP.png" alt="">PHP</span>
+                <span class="skill-chip"><img src="Images/Logos/Développement/LangagesDeProgrammation/Logo_Langage_JavaScript.webp" alt="">JavaScript</span>
+                <span class="skill-chip"><img src="Images/Logos/Développement/LangagesDeProgrammation/Logo_Langage_HTML.png" alt="HTML"><img src="Images/Logos/Développement/LangagesDeProgrammation/Logo_Langage_CSS.png" alt="CSS">HTML / CSS</span>
+                <span class="skill-chip"><img src="Images/Logos/Développement/BasesDeDonnes/Logo_BD_MySQL.webp" alt="">MySQL</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Projet 2 -->
+          <div class="stage-section reveal">
+            <p class="stage-section-label">Projet 2 — 4 semaines</p>
+            <div class="stage-project">
+              <p class="stage-project-num">// Création from scratch</p>
+              <p class="stage-project-title">Site de gestion des stocks interne DNI</p>
+              <p class="stage-project-desc">
+                La DNI gérait ses stocks via un Google Sheets incomplet et non-exhaustif. J'ai développé entièrement un outil web dédié, en choisissant volontairement des technologies nouvelles pour moi — <strong>Node.js + Express</strong> — afin d'élargir mes compétences au-delà de PHP.
+              </p>
+              <ul class="feature-list">
+                <li><strong>Tableau de bord</strong> : vue d'ensemble des stocks et commandes, indicateurs d'alerte en temps réel</li>
+                <li><strong>Gestion des stocks</strong> : catégories avec images, quantités par site (Douains / Mairie de Vernon / PM), seuil minimum configurable</li>
+                <li><strong>Alertes automatiques</strong> : passage sous le seuil → alerte visuelle + création automatique d'une commande</li>
+                <li><strong>Suivi des commandes</strong> : 7 statuts (à passer, en cours, en retard, terminé, partiel, retour, erreur), pièces jointes (PDF/image)</li>
+                <li>Validation d'une commande → <strong>incrémentation automatique</strong> du stock concerné</li>
+                <li><strong>Gestion des accès</strong> : 2 niveaux (Super Admin / Admin), mots de passe hachés</li>
+                <li>Documentation intégrée, accessible directement depuis l'interface</li>
+              </ul>
+              <p class="stage-stack-label">Stack</p>
+              <div class="skills-grid">
+                <span class="skill-chip"><img src="Images/Logos/Développement/LangagesDeProgrammation/Logo_NodeJS.png" alt="">Node.js</span>
+                <span class="skill-chip"><img src="Images/Logos/Développement/LangagesDeProgrammation/Logo_Langage_JavaScript.webp" alt="">Express.js</span>
+                <span class="skill-chip"><img src="Images/Logos/Développement/LangagesDeProgrammation/Boostrap_Logo.png" alt="">Bootstrap</span>
+                <span class="skill-chip"><img src="Images/Logos/Développement/BasesDeDonnes/Logo_BD_MySQL.webp" alt="">MySQL</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bilan -->
+          <div class="stage-section reveal">
+            <p class="stage-section-label">Bilan</p>
+            <div class="bilan-card">
+              <p>Ce stage m'a permis de monter en compétence sur des projets plus complexes et plus autonomes. Le passage de PHP à Node.js/Express pour le second projet a été formateur et m'a montré l'intérêt de diversifier ses compétences techniques.</p>
+              <p>J'ai également participé chaque semaine aux réunions support (lundi) et DNI (vendredi), et résolu plusieurs tickets GLPI liés au support technique quotidien.</p>
+            </div>
+          </div>
+
+          <!-- Download -->
+          <div class="reveal" style="margin-top:1rem;">
+            <a href="Pieces_Jointes/Rapport_De_Stage2.pdf" class="btn btn-outline" target="_blank">
+              📄 Rapport de stage complet (.pdf)
+            </a>
+          </div>
+
+        </div><!-- end #stage2 -->
+
+        <!-- ══════════ STAGE 1 ══════════ -->
+        <div class="tab-pane" id="stage1">
+
+          <!-- Meta -->
+          <div class="stage-meta reveal">
+            <div class="stage-meta-item">
+              <span class="meta-label">Entreprise</span>
+              <span class="meta-value">Seine Normandie Agglomération</span>
+            </div>
+            <div class="stage-meta-item">
+              <span class="meta-label">Service</span>
+              <span class="meta-value">Direction du Numérique et de l'Informatique</span>
+            </div>
+            <div class="stage-meta-item">
+              <span class="meta-label">Période</span>
+              <span class="meta-value">26 mai 2025 — 27 juin 2025</span>
+            </div>
+            <div class="stage-meta-item">
+              <span class="meta-label">Durée</span>
+              <span class="meta-value">5 semaines</span>
+            </div>
+          </div>
+
+          <!-- Contexte -->
+          <div class="stage-section reveal">
+            <p class="stage-section-label">Contexte</p>
+            <div class="card">
+              <p class="profile-text">
+                Premier stage réalisé au sein de la Communauté d'Agglomération Seine Normandie Agglomération, un EPCI normand fondé en 2017 regroupant plusieurs communes. Intégré à la Direction du Numérique et de l'Informatique (DNI), j'ai découvert le fonctionnement concret d'un service informatique en collectivité territoriale, ses missions de support, d'infrastructure et de développement interne.
+              </p>
+            </div>
+          </div>
+
+          <!-- Missions support -->
+          <div class="stage-section reveal">
+            <p class="stage-section-label">Missions support — Semaines 1 &amp; 2</p>
+            <div class="stage-project">
+              <p class="stage-project-num">// Support &amp; Maintenance</p>
+              <p class="stage-project-title">Interventions techniques quotidiennes</p>
+              <ul class="feature-list">
+                <li>Installation et configuration de <strong>postes Windows 11</strong> selon la procédure interne (logiciels réseau, drivers, paramètres)</li>
+                <li>Inventaire du parc matériel : vérification et mise à jour des étiquettes</li>
+                <li><strong>Démantèlement de PCs</strong> en fin de vie pour récupération de RAM et HDD</li>
+                <li>Aide au déménagement de bureaux et câblage</li>
+                <li>Résolution de <strong>tickets GLPI</strong> (support utilisateurs)</li>
+                <li>Participation aux réunions hebdomadaires support (lundi) et DNI (vendredi)</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Projet principal -->
+          <div class="stage-section reveal">
+            <p class="stage-section-label">Projet principal — Semaines 3 à 5</p>
+            <div class="stage-project">
+              <p class="stage-project-num">// Création from scratch</p>
+              <p class="stage-project-title">Site Annuaire interne</p>
+              <p class="stage-project-desc">
+                Les agents s'appuyaient sur des fichiers Excel ou des images pour retrouver leurs collègues — peu pratique et difficile à maintenir. J'ai conçu et développé entièrement un annuaire web centralisé, hébergé en local sur WampServer, couvrant cinq entités : SNA, Vernon, CIAS, OTC et CCAS.
+              </p>
+              <ul class="feature-list">
+                <li><strong>3 niveaux d'accès</strong> : lecteur (consultation seule) / modificateur (CRUD complet) / administrateur (gestion des comptes)</li>
+                <li><strong>Recherche globale multi-colonnes</strong> : combinaison libre de mots-clés sur toutes les colonnes simultanément</li>
+                <li><strong>Filtres avancés</strong> : menus déroulants par entité, service, pôle, direction</li>
+                <li>Basculement <strong>interne / externe</strong> pour les contacts hors-structure</li>
+                <li><strong>Mode sombre</strong> persistant (stockage local)</li>
+                <li><strong>Import CSV</strong> en masse</li>
+                <li>Champ <strong>localisation</strong> par personne (bureau, bâtiment, étage…)</li>
+                <li>Système de <strong>logs</strong> traçant toutes les actions (heure, action, utilisateur)</li>
+                <li>Mots de passe stockés sous forme <strong>hachée</strong></li>
+              </ul>
+              <p class="stage-stack-label">Stack</p>
+              <div class="skills-grid">
+                <span class="skill-chip"><img src="Images/Logos/Développement/LangagesDeProgrammation/Logo_Langage_HTML.png" alt="HTML"><img src="Images/Logos/Développement/LangagesDeProgrammation/Logo_Langage_CSS.png" alt="CSS">HTML / CSS</span>
+                <span class="skill-chip"><img src="Images/Logos/Développement/LangagesDeProgrammation/Logo_Langage_PHP.png" alt="">PHP</span>
+                <span class="skill-chip"><img src="Images/Logos/Développement/LangagesDeProgrammation/Logo_Langage_JavaScript.webp" alt="">JavaScript</span>
+                <span class="skill-chip"><img src="Images/Logos/Développement/BasesDeDonnes/Logo_BD_MySQL.webp" alt="">MySQL</span>
+                <span class="skill-chip"><img src="Images/Logos/Développement/LangagesDeProgrammation/Logo_WampServer.png" alt="">WampServer</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bilan -->
+          <div class="stage-section reveal">
+            <p class="stage-section-label">Bilan</p>
+            <div class="bilan-card">
+              <p>Ce premier stage m'a permis de réaliser un projet complet de A à Z dans un contexte professionnel réel. Confronté à des obstacles (WordPress trop contraignant pour mes besoins), j'ai su adapter ma démarche et partir sur une stack custom maîtrisée.</p>
+              <p>J'ai approfondi PHP/MySQL sur des sujets concrets : authentification sécurisée, CRUD complet, gestion de sessions, ergonomie. Une expérience décisive qui a confirmé mon attrait pour le développement d'applications utiles.</p>
+            </div>
+          </div>
+
+          <!-- Download -->
+          <div class="reveal" style="margin-top:1rem;">
+            <a href="Pieces_Jointes/Rapport_De_Stage1.pdf" class="btn btn-outline" target="_blank">
+              📄 Rapport de stage complet (.pdf)
+            </a>
+          </div>
+
+        </div><!-- end #stage1 -->
+
+      </section>
+
+    </div>
+  </div>
+
+  <footer>
+    <p>Hugo CANU — BTS SIO SLAM 2024–2026 &nbsp;·&nbsp; <a href="https://github.com/HCWhite1" target="_blank">GitHub</a></p>
+  </footer>
+
+  <button id="back-to-top" aria-label="Retour en haut">
+    <svg viewBox="0 0 14 14" fill="none"><path d="M7 11V3M3 7l4-4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

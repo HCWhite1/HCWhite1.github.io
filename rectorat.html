@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rectorat — Hugo CANU</title>
+  <link rel="icon" type="image/x-icon" href="favicon_io/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ─── Navbar ─── -->
+  <nav class="navbar">
+    <a class="navbar-brand" href="index.html">HC<span class="acc">.</span></a>
+    <ul class="navbar-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="veille.html">Veille</a></li>
+      <li><a href="stages.html">Stages</a></li>
+      <li><a href="realisations.html">Réalisations</a></li>
+      <li><a href="rectorat.html">Rectorat</a></li>
+    </ul>
+    <a class="navbar-gh" href="https://github.com/HCWhite1" target="_blank" rel="noopener" aria-label="GitHub">
+      <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+    </a>
+  </nav>
+
+  <div class="page-wrapper">
+    <div class="container">
+
+      <!-- ─── Page hero ─── -->
+      <div class="page-hero">
+        <p class="label">// Épreuves BTS SIO</p>
+        <h1>Rectorat — <span style="color:var(--accent)">E5 / E6</span></h1>
+        <p>Documents officiels pour les épreuves pratiques du BTS SIO SLAM.</p>
+      </div>
+
+      <section class="section">
+
+        <!-- Tabs -->
+        <div class="tabs reveal">
+          <button class="tab-btn active" data-tab="tab-e5">E5</button>
+          <button class="tab-btn" data-tab="tab-e6">E6</button>
+        </div>
+
+        <!-- ─── E5 ─── -->
+        <div class="tab-pane active reveal" id="tab-e5">
+          <p class="section-label" style="margin-bottom:1.25rem;">Documents E5</p>
+          <div class="doc-list">
+
+            <a href="Pieces_Jointes/TableauDeSynthese.xlsx"
+               class="doc-item" download>
+              <span class="doc-icon">📊</span>
+              <div class="doc-info">
+                <p class="doc-name">Tableau de synthèse</p>
+                <p class="doc-type">Fichier Excel — .xlsx</p>
+              </div>
+              <span class="doc-action">⬇ Télécharger</span>
+            </a>
+
+            <a href="Pieces_Jointes/AttestationDeStage.pdf"
+               class="doc-item" target="_blank">
+              <span class="doc-icon">📄</span>
+              <div class="doc-info">
+                <p class="doc-name">Attestation de stage</p>
+                <p class="doc-type">Document PDF</p>
+              </div>
+              <span class="doc-action">⬇ Télécharger</span>
+            </a>
+
+          </div>
+        </div>
+
+        <!-- ─── E6 ─── -->
+        <div class="tab-pane" id="tab-e6">
+          <div class="coming-soon">
+            <p>Contenu à venir</p>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+  </div>
+
+  <footer>
+    <p>Hugo CANU — BTS SIO SLAM 2024–2026 &nbsp;·&nbsp; <a href="https://github.com/HCWhite1" target="_blank">GitHub</a></p>
+  </footer>
+
+  <button id="back-to-top" aria-label="Retour en haut">
+    <svg viewBox="0 0 14 14" fill="none"><path d="M7 11V3M3 7l4-4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
