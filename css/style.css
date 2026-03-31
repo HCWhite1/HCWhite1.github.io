@@ -700,6 +700,8 @@ a.certif-item { text-decoration: none; color: var(--text); }
   font-size: 0.6rem; color: var(--text-muted);
   letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.5rem;
 }
+.stage-competences { margin-bottom: 0.2rem; }
+.stage-competences .competence-item:last-child { margin-bottom: 0; }
 
 .bilan-card {
   border-left: 2px solid var(--accent);
