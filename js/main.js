@@ -1,7 +1,3 @@
-/* =============================================
-   main.js — Hugo CANU Portfolio
-   ============================================= */
-
 // ─── Matrix Rain ───────────────────────────────
 function initMatrix() {
   const canvas = document.getElementById('matrix-canvas');
@@ -164,6 +160,111 @@ function initBackToTop() {
   btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 }
 
+// ─── News (Veille) ─────────────────────────────
+function initNewsArticles() {
+  const items = Array.from(document.querySelectorAll('.news-item'));
+  const overlay = document.getElementById('news-modal-overlay');
+  if (!items.length || !overlay) return;
+
+  const modal = {
+    title: document.getElementById('news-modal-title'),
+    summary: document.getElementById('news-modal-summary'),
+    author: document.getElementById('news-modal-author'),
+    bornage: document.getElementById('news-modal-bornage'),
+    date: document.getElementById('news-modal-date'),
+    pdf: document.getElementById('news-modal-pdf'),
+    source: document.getElementById('news-modal-source')
+  };
+
+  const dateView = document.getElementById('news-date-view');
+  const bornageView = document.getElementById('news-bornage-view');
+  const sortBtns = Array.from(document.querySelectorAll('.news-sort-btn'));
+
+  function formatDate(isoDate) {
+    if (!isoDate) return '-';
+    const [year, month, day] = isoDate.split('-');
+    return year && month && day ? `${day}/${month}/${year}` : isoDate;
+  }
+
+  function openModal(item) {
+    const title = item.querySelector('.news-title')?.textContent?.trim() || 'Article';
+    const source = item.querySelector('.news-src')?.textContent?.trim() || '';
+    const author = item.dataset.author || 'A définir';
+    const bornage = item.dataset.bornage || 'A définir';
+    const date = item.dataset.date || '';
+    const pdf = item.dataset.pdf || '#';
+    const url = item.dataset.url || '#';
+
+    modal.title.textContent = title;
+    modal.summary.textContent = item.dataset.summary || `${title} : point rapide ${bornage.toLowerCase()} via ${source}.`;
+    modal.author.textContent = author;
+    modal.bornage.textContent = bornage;
+    modal.date.textContent = formatDate(date);
+    modal.pdf.href = pdf;
+    modal.source.href = url;
+    modal.source.textContent = source ? `Source originale (${source})` : 'Source originale';
+
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  function renderBornageView() {
+    const cols = { CPU: [], GPU: [], Drivers: [] };
+    items.forEach(item => {
+      const bornage = item.dataset.bornage || 'CPU';
+      if (cols[bornage]) cols[bornage].push(item);
+    });
+
+    Object.entries(cols).forEach(([key, list]) => {
+      const container = bornageView.querySelector(`[data-bornage-col="${key}"] .news-bornage-list`);
+      if (!container) return;
+      container.innerHTML = '';
+      list
+        .sort((a, b) => (b.dataset.date || '').localeCompare(a.dataset.date || ''))
+        .forEach(item => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'news-bornage-item';
+          const title = item.querySelector('.news-title')?.textContent?.trim() || 'Article';
+          const src = item.querySelector('.news-src')?.textContent?.trim() || '';
+          const date = formatDate(item.dataset.date || '');
+          btn.innerHTML = `<span class="news-title">${title}</span><span class="news-src">${src}</span><span class="news-date">${date}</span>`;
+          btn.addEventListener('click', () => openModal(item));
+          container.appendChild(btn);
+        });
+    });
+  }
+
+  items.forEach(item => item.addEventListener('click', e => {
+    e.preventDefault();
+    openModal(item);
+  }));
+
+  function switchView(mode) {
+    sortBtns.forEach(b => b.classList.toggle('active', b.dataset.sort === mode));
+    dateView.hidden = mode !== 'date';
+    bornageView.hidden = mode !== 'bornage';
+  }
+
+  sortBtns.forEach(btn => btn.addEventListener('click', () => {
+    switchView(btn.dataset.sort || 'date');
+  }));
+
+  overlay.querySelector('[data-news-close]')?.addEventListener('click', closeModal);
+  overlay.addEventListener('click', e => e.target === overlay && closeModal());
+  document.addEventListener('keydown', e => e.key === 'Escape' && overlay.classList.contains('open') && closeModal());
+
+  renderBornageView();
+  switchView('date');
+}
+
 // ─── Init ───────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   initMatrix();
@@ -172,5 +273,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initNav();
   initTabs();
   initModals();
+  initNewsArticles();
   initBackToTop();
 });
