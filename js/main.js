@@ -124,6 +124,15 @@ function initModals() {
   overlay.querySelector('#modal-close-btn')?.addEventListener('click', close);
   overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+
+  const detailsBtn   = document.getElementById('modal-details-btn');
+  const detailsPanel = document.getElementById('modal-details-panel');
+  detailsBtn?.addEventListener('click', () => {
+    const isHidden = detailsPanel.hidden;
+    detailsPanel.hidden = !isHidden;
+    detailsBtn.classList.toggle('open', isHidden);
+    detailsBtn.textContent = isHidden ? '▾ Masquer les détails' : '▸ Détails';
+  });
 }
 
 function populateModal(d) {
@@ -148,6 +157,25 @@ function populateModal(d) {
     <span class="techno-chip">
       ${t.logo ? `<img src="${t.logo}" alt="">` : ''}${t.name}
     </span>`).join('');
+
+  // Details panel — reset & populate
+  const detailsBtn   = document.getElementById('modal-details-btn');
+  const detailsPanel = document.getElementById('modal-details-panel');
+  if (detailsPanel) {
+    detailsPanel.hidden = true;
+    if (detailsBtn) { detailsBtn.classList.remove('open'); detailsBtn.textContent = '▸ Détails'; }
+    detailsPanel.innerHTML = (d.details ?? []).map(c => `
+      <div class="details-comp-block">
+        <div class="details-comp-header">
+          <span class="details-comp-code">${c.code}</span>
+          <span class="details-comp-label">${c.label}</span>
+        </div>
+        <p class="details-comp-sub">▸ ${c.sub ?? ''}</p>
+        ${c.points && c.points.length
+          ? `<ul class="details-points">${c.points.map(p => `<li>${p}</li>`).join('')}</ul>`
+          : '<p class="details-empty">—</p>'}
+      </div>`).join('');
+  }
 }
 
 // ─── Back to top ────────────────────────────────

@@ -65,7 +65,7 @@
               <p class="realisation-title">TP SQL</p>
               <p class="realisation-desc">Description à compléter.</p>
               <div class="realisation-footer">
-                <span class="realisation-date">À compléter</span>
+                <span class="realisation-date">Fév. 2025 — Fév. 2025</span>
                 <button class="btn-details" data-modal="tpsql">Voir les détails →</button>
               </div>
             </div>
@@ -129,7 +129,7 @@
               <p class="realisation-title">Veille technologique — Hardware &amp; Software</p>
               <p class="realisation-desc">Suivi continu de l'actu hardware/software sur AMD, NVIDIA et Intel.</p>
               <div class="realisation-footer">
-                <span class="realisation-date">Mars 2025 — Mars 2026</span>
+                <span class="realisation-date">Mars 2025 — En cours</span>
                 <button class="btn-details" data-modal="veille">Voir les détails →</button>
               </div>
             </div>
@@ -162,6 +162,10 @@
 
         <p class="modal-section">Technologies utilisées</p>
         <div id="modal-technos" class="techno-chips"></div>
+
+        <hr class="modal-details-sep">
+        <button class="btn btn-outline" id="modal-details-btn">▸ Détails</button>
+        <div id="modal-details-panel" hidden style="margin-top:1rem;"></div>
       </div>
     </div>
   </div>
@@ -194,6 +198,38 @@
           { name: 'JavaScript', logo: 'Images/Logos/Développement/LangagesDeProgrammation/Logo_Langage_JavaScript.webp' },
           { name: 'MySQL', logo: 'Images/Logos/Développement/BasesDeDonnes/Logo_BD_MySQL.webp' },
           { name: 'WampServer', logo: 'Images/Logos/Développement/LangagesDeProgrammation/Logo_WampServer.png' }
+        ],
+        details: [
+          {
+            code: 'B 1.3', label: 'Développer la présence en ligne de l\'organisation',
+            sub: 'Participer à l\'évolution d\'un site Web exploitant les données de l\'organisation',
+            points: [
+              'Conception complète d\'un annuaire web multi-entités couvrant SNA, Vernon, CIAS, OTC et CCAS',
+              'Intégration des données réelles de l\'organisation : agents, services, pôles, directions et localisations',
+              'Interface de consultation avec recherche multi-colonnes et filtres avancés (entité, service, pôle, direction)',
+              'Import CSV en masse pour alimenter la base sans compétences techniques requises',
+              'Système de logs traçant toutes les actions (heure, utilisateur, action effectuée)'
+            ]
+          },
+          {
+            code: 'B 1.4', label: 'Travailler en mode projet',
+            sub: 'Planifier les activités',
+            points: [
+              'Analyse du besoin utilisateur en début de stage (entretien avec le responsable DNI)',
+              'Rédaction d\'un planning semaine par semaine et adaptation au fil des retours agents',
+              'Pivot technique décidé en autonomie : abandon de WordPress, adoption d\'une stack PHP/MySQL custom adaptée au besoin'
+            ]
+          },
+          {
+            code: 'B 1.5', label: 'Mettre à disposition des utilisateurs un service informatique',
+            sub: 'Déployer un service et accompagner les utilisateurs',
+            points: [
+              'Déploiement sur le serveur WampServer interne de la DNI, accessible à tous les agents du réseau',
+              'Mise en place de 3 niveaux de droits : lecteur (consultation), modificateur (CRUD), administrateur (gestion des comptes)',
+              'Formation des agents administrateurs à la gestion des comptes et à l\'import CSV',
+              'Application restée opérationnelle après la fin du stage'
+            ]
+          }
         ]
       },
 
@@ -208,6 +244,28 @@
         ],
         technos: [
           { name: 'GLPI', logo: 'Images/Logos/Développement/Logo_GLPI.png' }
+        ],
+        details: [
+          {
+            code: 'B 1.1', label: 'Gérer le patrimoine informatique',
+            sub: 'Recenser et identifier les ressources numériques',
+            points: [
+              'Consultation de l\'inventaire GLPI pour localiser le matériel concerné avant chaque intervention',
+              'Mise à jour des fiches équipements après remplacement (réattribution de matériel, changement d\'état)',
+              'Participation à l\'inventaire physique : vérification et réétiquetage des machines',
+              'Démantèlement de PCs obsolètes avec récupération de composants réutilisables (RAM, HDD)'
+            ]
+          },
+          {
+            code: 'B 1.2', label: 'Répondre aux incidents et aux demandes d\'assistance et d\'évolution',
+            sub: 'Collecter, suivre et orienter des demandes',
+            points: [
+              'Prise en charge quotidienne de tickets GLPI : remplacement de périphériques, réinstallation de logiciels, dépannage réseau',
+              'Qualification des demandes selon leur urgence et orientation vers le bon interlocuteur',
+              'Mise à jour du statut des tickets et communication auprès des demandeurs tout au long du traitement',
+              'Demandes reçues via GLPI, par mail ou passage direct au bureau du service DNI'
+            ]
+          }
         ]
       },
 
@@ -222,6 +280,20 @@
         technos: [
           { name: 'HTML / CSS', logo: 'Images/Logos/Développement/LangagesDeProgrammation/Logo_Langage_HTML.png' },
           { name: 'JavaScript', logo: 'Images/Logos/Développement/LangagesDeProgrammation/Logo_Langage_JavaScript.webp' }
+        ],
+        details: [
+          {
+            code: 'B 1.6', label: 'Organiser son développement professionnel',
+            sub: 'Gérer son identité professionnelle',
+            points: [
+              'Conception d\'un site vitrine statique en HTML / CSS / JavaScript vanilla, sans framework',
+              'Hébergement gratuit via GitHub Pages — déploiement automatique à chaque push sur la branche main',
+              'Versionnage du code source via Git/GitHub (dépôt public HCWhite1.github.io)',
+              'Organisation du contenu : parcours, compétences Bloc 1, réalisations, veille technologique, stages',
+              'Design responsive, thème sombre, animation matrix rain (canvas), effets de révélation au scroll',
+              'Mise à jour continue tout au long de la formation'
+            ]
+          }
         ]
       },
 
@@ -240,6 +312,18 @@
           { name: 'MySQL', logo: 'Images/Logos/Développement/BasesDeDonnes/Logo_BD_MySQL.webp' },
           { name: 'phpMyAdmin', logo: 'Images/Logos/Développement/BasesDeDonnes/Logo_BD_phpMyAdmin.png' },
           { name: 'WampServer', logo: 'Images/Logos/Développement/LangagesDeProgrammation/Logo_WampServer.png' }
+        ],
+        details: [
+          {
+            code: 'B 1.3', label: 'Développer la présence en ligne de l\'organisation',
+            sub: 'Participer à l\'évolution d\'un site Web exploitant les données de l\'organisation',
+            points: []
+          },
+          {
+            code: 'B 1.5', label: 'Mettre à disposition des utilisateurs un service informatique',
+            sub: 'Déployer un service',
+            points: []
+          }
         ]
       },
 
@@ -256,6 +340,18 @@
           { name: 'Feedly', logo: 'Images/Logos/VeilleTechnologique/LogoVeilleTechno_Outils_Feedly.png' },
           { name: 'Google Alerts', logo: 'Images/Logos/VeilleTechnologique/LogoVeilleTechno_Outils_GoogleAlerts.png' },
           { name: 'Mention', logo: 'Images/Logos/VeilleTechnologique/LogoVeilleTechno-Outils_Mention.jpg' }
+        ],
+        details: [
+          {
+            code: 'B 1.6', label: 'Organiser son développement professionnel',
+            sub: 'Mettre en œuvre des outils et stratégies de veille informationnelle',
+            points: [
+              'Mise en place d\'une stratégie multi-sources : Flipboard (agrégation par thème), Feedly (flux RSS ciblés), Google Alerts (mots-clés AMD / NVIDIA / Intel), Mention (monitoring web)',
+              'Sélection mensuelle de 2 articles pertinents : nouveaux processeurs, mises à jour de pilotes, failles matérielles',
+              'Rédaction de synthèses courtes et archivage chronologique consultables sur le site portfolio',
+              'Couverture de mars 2025 à mars 2026, soit 12 mois de suivi continu'
+            ]
+          }
         ]
       },
 
@@ -269,7 +365,24 @@
           { code: 'B 1.2', label: 'Répondre aux incidents et aux demandes d\'assistance et d\'évolution', sub: 'Traiter des demandes concernant les applications' },
           { code: 'B 1.5', label: 'Mettre à disposition des utilisateurs un service informatique', sub: 'Réaliser les tests d\'intégration et d\'acceptation d\'un service' }
         ],
-        technos: []
+        technos: [],
+        details: [
+          {
+            code: 'B 1.1', label: 'Gérer le patrimoine informatique',
+            sub: 'Recenser et identifier les ressources numériques',
+            points: []
+          },
+          {
+            code: 'B 1.2', label: 'Répondre aux incidents et aux demandes d\'assistance et d\'évolution',
+            sub: 'Traiter des demandes concernant les applications',
+            points: []
+          },
+          {
+            code: 'B 1.5', label: 'Mettre à disposition des utilisateurs un service informatique',
+            sub: 'Réaliser les tests d\'intégration et d\'acceptation d\'un service',
+            points: []
+          }
+        ]
       }
 
     };
