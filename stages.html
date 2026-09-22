@@ -72,7 +72,8 @@
           <!-- Contexte -->
           <div class="stage-section reveal">
             <p class="stage-section-label">Contexte</p>
-            <div class="card">
+            <div class="card stage-contexte">
+              <img class="stage-photo" src="Images/Stages/sna-douains.webp" alt="Locaux de Seine Normandie Agglomération à Douains" loading="lazy" width="583" height="437">
               <p class="profile-text">
                 Second stage au sein de la même structure : la Communauté d'Agglomération Seine Normandie Agglomération, un EPCI normand. La DNI est un service mutualisé intervenant pour SNA, la Ville de Vernon, le CIAS, le CCAS et l'OTC. J'avais déjà une bonne connaissance du terrain, ce qui m'a permis d'être opérationnel immédiatement et de prendre en charge des projets plus ambitieux.
               </p>
@@ -80,7 +81,7 @@
           </div>
 
           <!-- Projet 1 -->
-          <div class="stage-section reveal">
+          <div class="stage-section reveal" id="stage2-annuaire">
             <p class="stage-section-label">Projet 1 — 2 semaines</p>
             <div class="stage-project">
               <p class="stage-project-num">// Évolution</p>
@@ -97,6 +98,110 @@
                 <li>Sécurisation : <strong>variables d'environnement</strong> pour les credentials DB, <strong>certificat HTTPS</strong> sur le serveur</li>
                 <li>Coloration par pôle désactivée par défaut, ré-activable via bouton</li>
               </ul>
+              <p class="stage-stack-label">Aperçu</p>
+              <div class="shot-grid">
+                <figure class="shot">
+                  <button class="shot-btn" type="button" data-full="Images/Stages/Stage2/annuaire-v2-apercu.png">
+                    <img src="Images/Stages/Stage2/annuaire-v2-apercu.png" alt="Annuaire v2 : liste des agents avec recherche et filtres" loading="lazy">
+                  </button>
+                  <figcaption>L'annuaire après refonte : coloration par pôle désactivée par défaut, recherche et filtres.</figcaption>
+                </figure>
+                <figure class="shot">
+                  <button class="shot-btn" type="button" data-full="Images/Stages/Stage2/annuaire-v2-logs.png">
+                    <img src="Images/Stages/Stage2/annuaire-v2-logs.png" alt="Historique des actions de l'annuaire" loading="lazy">
+                  </button>
+                  <figcaption>Historique des actions, désormais consultable depuis le site et découpé par mois.</figcaption>
+                </figure>
+                <figure class="shot">
+                  <button class="shot-btn" type="button" data-full="Images/Stages/Stage2/annuaire-v2-structure.png">
+                    <img src="Images/Stages/Stage2/annuaire-v2-structure.png" alt="Page de gestion de la structure organisationnelle" loading="lazy">
+                  </button>
+                  <figcaption>Gestion de la structure : entités, pôles, directions et services modifiables en ligne.</figcaption>
+                </figure>
+                <figure class="shot">
+                  <button class="shot-btn" type="button" data-full="Images/Stages/Stage2/annuaire-v2-mots-cles.png">
+                    <img src="Images/Stages/Stage2/annuaire-v2-mots-cles.png" alt="Fenêtre de gestion des mots-clés d'un service" loading="lazy">
+                  </button>
+                  <figcaption>Mots-clés de recherche : &laquo;&nbsp;paye&nbsp;&raquo; retrouve le service Rémunération et pilotage des absences.</figcaption>
+                </figure>
+              </div>
+              <p class="stage-stack-label">Extraits de code</p>
+              <div class="code-drops">
+                <details class="code-drop">
+                  <summary><span class="code-feat">Import : entités, pôles, directions et services reconnus par leur nom, créés s'ils n'existent pas</span><span class="code-file">includes/import_csv.php</span></summary>
+                  <div class="code-block">
+                    <p class="code-loc">resolveToId()</p>
+                    <pre><code>// Sinon, chercher par nom (insensible casse/accents)
+$value = normalizeNameValue($value);
+$stmt = $connexion-&gt;prepare("SELECT $idColumn FROM $table WHERE $nameColumn COLLATE utf8mb4_general_ci = ? LIMIT 1");
+$stmt-&gt;bind_param("s", $value);
+$stmt-&gt;execute();
+$result = $stmt-&gt;get_result();
+if ($result &amp;&amp; $row = $result-&gt;fetch_assoc()) {
+    $stmt-&gt;close();
+    return (int)$row[$idColumn];
+}
+$stmt-&gt;close();
+
+if ($allowCreate &amp;&amp; $value !== '') {
+    $insertStmt = $connexion-&gt;prepare("INSERT INTO $table ($nameColumn) VALUES (?)");
+    $insertStmt-&gt;bind_param("s", $value);
+    if ($insertStmt-&gt;execute()) {
+        $newId = (int)$insertStmt-&gt;insert_id;
+        $insertStmt-&gt;close();
+        return $newId;
+    }
+    $insertStmt-&gt;close();
+}</code></pre>
+                  </div>
+                </details>
+                <details class="code-drop">
+                  <summary><span class="code-feat">Mots-clés : ils rejoignent le texte indexé de chaque ligne, puis la recherche exige tous les termes</span><span class="code-file">js/virtual-scroll.js</span></summary>
+                  <div class="code-block">
+                    <p class="code-loc">loadPersonnelData()</p>
+                    <pre><code>// Ajouter les mots-clés si disponibles
+const directionName = item.cells[8]?.value || '';
+const serviceName = item.cells[9]?.value || '';
+const dirKeywords = getKeywordsFor('direction', directionName);
+const svcKeywords = getKeywordsFor('service', serviceName);
+const allKeywords = [...dirKeywords, ...svcKeywords].join(' ').toLowerCase();
+
+item.searchText = cellTexts.join(' ') + ' ' + allKeywords;
+item.searchTextServiceOnly = cellTexts.filter((_, i) =&gt; i !== 7 &amp;&amp; i !== 8).join(' ') + ' ' + allKeywords;</code></pre>
+                  </div>
+                  <div class="code-block">
+                    <p class="code-loc">performFilter()</p>
+                    <pre><code>state.filteredData = state.allData.filter(item =&gt; {
+    const searchText = state.serviceOnlyMode ? item.searchTextServiceOnly : item.searchText;
+    const matchSearch = searchTerms.length === 0 || searchTerms.every(t =&gt; searchText.includes(t));</code></pre>
+                  </div>
+                </details>
+                <details class="code-drop">
+                  <summary><span class="code-feat">Sécurisation : identifiants de la base lus dans l'environnement</span><span class="code-file">includes/db.php</span></summary>
+                  <div class="code-block">
+                    <p class="code-loc">db.php</p>
+                    <pre><code>// Collect DB settings with robust fallbacks
+$env = [
+    'host' =&gt; getenv('DB_HOST') ?: 'localhost',
+    'user' =&gt; getenv('DB_USER') ?: 'root',
+    'pass' =&gt; getenv('DB_PASS') !== false ? getenv('DB_PASS') : (getenv('DB_PASSWORD') ?: ''),
+    'name' =&gt; null,
+];</code></pre>
+                  </div>
+                  <div class="code-block">
+                    <p class="code-loc">db.php</p>
+                    <pre><code>$connexion = new mysqli($env['host'], $env['user'], $env['pass'], $env['name']);
+
+if ($connexion-&gt;connect_error) {
+    die("Erreur de connexion à la base '{$env['name']}' : " . $connexion-&gt;connect_error);
+}
+
+$connexion-&gt;set_charset('utf8mb4');</code></pre>
+                  </div>
+                </details>
+              </div>
+
+
               <p class="stage-stack-label">Stack</p>
               <div class="skills-grid">
                 <span class="skill-chip"><img src="Images/Logos/Développement/LangagesDeProgrammation/Logo_Langage_PHP.png" alt="">PHP</span>
@@ -114,7 +219,7 @@
           </div>
 
           <!-- Projet 2 -->
-          <div class="stage-section reveal">
+          <div class="stage-section reveal" id="stage2-stocks">
             <p class="stage-section-label">Projet 2 — 4 semaines</p>
             <div class="stage-project">
               <p class="stage-project-num">// Création from scratch</p>
@@ -131,6 +236,106 @@
                 <li><strong>Gestion des accès</strong> : 2 niveaux (Super Admin / Admin), mots de passe hachés</li>
                 <li>Documentation intégrée, accessible directement depuis l'interface</li>
               </ul>
+              <p class="stage-stack-label">Aperçu</p>
+              <div class="shot-grid">
+                <figure class="shot">
+                  <button class="shot-btn" type="button" data-full="Images/Stages/Stage2/stocks-tableau-de-bord.png">
+                    <img src="Images/Stages/Stage2/stocks-tableau-de-bord.png" alt="Tableau de bord du site de gestion des stocks" loading="lazy">
+                  </button>
+                  <figcaption>Tableau de bord : état des stocks et des commandes en un coup d'&oelig;il.</figcaption>
+                </figure>
+                <figure class="shot">
+                  <button class="shot-btn" type="button" data-full="Images/Stages/Stage2/stocks-catalogue.png">
+                    <img src="Images/Stages/Stage2/stocks-catalogue.png" alt="Catalogue des articles par catégorie" loading="lazy">
+                  </button>
+                  <figcaption>Catalogue par catégorie, avec la quantité et l'alerte de seuil sur chaque article.</figcaption>
+                </figure>
+                <figure class="shot">
+                  <button class="shot-btn" type="button" data-full="Images/Stages/Stage2/stocks-detail-item.png">
+                    <img src="Images/Stages/Stage2/stocks-detail-item.png" alt="Fiche détaillée d'un article en stock" loading="lazy">
+                  </button>
+                  <figcaption>Fiche article : stock et seuil par site, entrées/sorties et derniers mouvements.</figcaption>
+                </figure>
+                <figure class="shot">
+                  <button class="shot-btn" type="button" data-full="Images/Stages/Stage2/stocks-commandes.png">
+                    <img src="Images/Stages/Stage2/stocks-commandes.png" alt="Page de suivi des commandes" loading="lazy">
+                  </button>
+                  <figcaption>Suivi des commandes et de leurs 7 statuts, avec pièces jointes.</figcaption>
+                </figure>
+              </div>
+              <p class="stage-stack-label">Extraits de code</p>
+              <div class="code-drops">
+                <details class="code-drop">
+                  <summary><span class="code-feat">Stock sous le seuil : une commande « À passer » est créée automatiquement</span><span class="code-file">app.js</span></summary>
+                  <div class="code-block">
+                    <p class="code-loc">POST /api/stocks/mouvement</p>
+                    <pre><code>// Logique alerte commandes
+if (seuil &gt; 0) {
+    if (newQty &gt; seuil) {
+        // Stock au-dessus du seuil : passer les commandes "A passer" en "Termine"
+        await conn.execute(
+            'UPDATE dni_commandes SET ID_Commande_Status = 4 WHERE ID_Item = ? AND Entite_Commande = ? AND ID_Commande_Status = 1',
+            [id_item, id_entite]
+        );
+    } else if (newQty &lt;= seuil) {
+        // Stock sous le seuil : creer une commande si aucune "A passer" n'existe
+        const [existing] = await conn.execute(
+            'SELECT COUNT(*) AS cnt FROM dni_commandes WHERE ID_Item = ? AND Entite_Commande = ? AND ID_Commande_Status = 1',
+            [id_item, id_entite]
+        );
+        if (existing[0].cnt === 0) {
+            const [itemInfo] = await conn.execute('SELECT Item_Libelle FROM dni_items WHERE ID_Item = ?', [id_item]);
+            const libelle = itemInfo[0] ? itemInfo[0].Item_Libelle : null;
+            await conn.execute(
+                'INSERT INTO dni_commandes (Libelle_Commande, ID_Item, Entite_Commande, ID_Commande_Status, Date_Ajout_Commande) VALUES (?, ?, ?, 1, NOW())',
+                [libelle, id_item, id_entite]
+            );
+        }
+    }
+}</code></pre>
+                  </div>
+                </details>
+                <details class="code-drop">
+                  <summary><span class="code-feat">Commande passée en « Terminé » : la quantité entre en stock</span><span class="code-file">app.js</span></summary>
+                  <div class="code-block">
+                    <p class="code-loc">PATCH /api/commandes/:id/status</p>
+                    <pre><code>await conn.execute('UPDATE dni_commandes SET ID_Commande_Status = ? WHERE ID_Commande = ?', [newStatus, id]);
+
+if (newStatus === 4 &amp;&amp; prevStatus !== 4 &amp;&amp; cmd.ID_Item &amp;&amp; cmd.Entite_Commande) {
+    const qty = Number(cmd.quantite ?? cmd.Qte_Commande ?? cmd.items_quantite ?? 0);
+    if (!isNaN(qty) &amp;&amp; qty &gt; 0) {
+        const [upd] = await conn.execute(
+            'UPDATE dni_items_stock SET items_quantite = COALESCE(items_quantite,0) + ? WHERE ID_Item = ? AND ID_Entite = ?',
+            [qty, cmd.ID_Item, cmd.Entite_Commande]
+        );
+    }
+}</code></pre>
+                  </div>
+                </details>
+                <details class="code-drop">
+                  <summary><span class="code-feat">Contrôle d’accès à deux niveaux (Admin / Super Admin)</span><span class="code-file">middleware/auth.js</span></summary>
+                  <div class="code-block">
+                    <p class="code-loc">middleware/auth.js</p>
+                    <pre><code>const requireAuth = (req, res, next) =&gt; {
+    if (req.session &amp;&amp; req.session.user &amp;&amp; (req.session.user.level === 1 || req.session.user.level === 2)) {
+        next();
+    } else {
+        res.status(401).json({ error: 'Non autorisé. Connexion admin requise.' });
+    }
+};
+
+const requireSuperAdmin = (req, res, next) =&gt; {
+    if (req.session &amp;&amp; req.session.user &amp;&amp; req.session.user.level === 1) {
+        next();
+    } else {
+        res.status(403).json({ error: 'Accès réservé aux Super Admins' });
+    }
+};</code></pre>
+                  </div>
+                </details>
+              </div>
+
+
               <p class="stage-stack-label">Stack</p>
               <div class="skills-grid">
                 <span class="skill-chip"><img src="Images/Logos/Développement/LangagesDeProgrammation/Logo_NodeJS.png" alt="">Node.js</span>
@@ -192,7 +397,8 @@
           <!-- Contexte -->
           <div class="stage-section reveal">
             <p class="stage-section-label">Contexte</p>
-            <div class="card">
+            <div class="card stage-contexte">
+              <img class="stage-photo" src="Images/Stages/sna-douains.webp" alt="Locaux de Seine Normandie Agglomération à Douains" loading="lazy" width="583" height="437">
               <p class="profile-text">
                 Premier stage réalisé au sein de la Communauté d'Agglomération Seine Normandie Agglomération, un EPCI normand fondé en 2017 regroupant plusieurs communes. Intégré à la Direction du Numérique et de l'Informatique (DNI), j'ai découvert le fonctionnement concret d'un service informatique en collectivité territoriale, ses missions de support, d'infrastructure et de développement interne.
               </p>
@@ -200,7 +406,7 @@
           </div>
 
           <!-- Missions support -->
-          <div class="stage-section reveal">
+          <div class="stage-section reveal" id="stage1-support">
             <p class="stage-section-label">Missions support — Semaines 1 &amp; 2</p>
             <div class="stage-project">
               <p class="stage-project-num">// Support &amp; Maintenance</p>
@@ -222,7 +428,7 @@
           </div>
 
           <!-- Projet principal -->
-          <div class="stage-section reveal">
+          <div class="stage-section reveal" id="stage1-annuaire">
             <p class="stage-section-label">Projet principal — Semaines 3 à 5</p>
             <div class="stage-project">
               <p class="stage-project-num">// Création from scratch</p>
@@ -279,6 +485,16 @@
       </section>
 
     </div>
+  </div>
+
+
+  <!-- Visionneuse de captures -->
+  <div class="shot-viewer" id="shot-viewer" role="dialog" aria-modal="true" aria-label="Capture agrandie">
+    <button class="shot-viewer-close" type="button">✕ Fermer</button>
+    <figure>
+      <img src="" alt="">
+      <figcaption></figcaption>
+    </figure>
   </div>
 
   <footer>
