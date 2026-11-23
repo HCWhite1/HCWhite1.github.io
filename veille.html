@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Veille Technologique — Hugo CANU</title>
+  <link rel="icon" type="image/x-icon" href="favicon_io/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <canvas id="matrix-canvas"></canvas>
+
+  <!-- ─── Navbar ─── -->
+  <nav class="navbar">
+    <a class="navbar-brand" href="index.html">HC<span class="acc">.</span></a>
+    <input type="checkbox" id="nav-toggle" class="sr-input nav-toggle-input" aria-hidden="true">
+    <ul class="navbar-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="veille.html" class="active" aria-current="page">Veille</a></li>
+      <li><a href="stages.html">Stages</a></li>
+      <li><a href="realisations.html">Réalisations</a></li>
+      <li><a href="rectorat.html">Rectorat</a></li>
+    </ul>
+    <label for="nav-toggle" class="navbar-toggle" aria-label="Menu de navigation"><span></span><span></span><span></span></label>
+    <a class="navbar-gh" href="https://github.com/HCWhite1" target="_blank" rel="noopener" aria-label="GitHub">
+      <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+    </a>
+  </nav>
+
+  <div class="page-wrapper">
+    <div class="container">
+
+      <!-- ─── Page hero ─── -->
+      <div class="page-hero">
+        <p class="label">// Veille technologique</p>
+        <h1>Évolution du <span class="acc">Hardware &amp; Software</span></h1>
+        <p>Suivi continu des avancées dans le domaine des composants et logiciels PC — mars 2025 à novembre 2026.</p>
+      </div>
+
+      <!-- ─── Méta : sujets & outils ─── -->
+      <section class="section" style="padding-bottom:2rem;">
+        <div class="veille-meta">
+
+          <div class="veille-block card green-hover reveal">
+            <h4>Sujets de veille</h4>
+            <div class="skills-grid">
+              <span class="skill-chip">
+                <img src="Images/Logos/VeilleTechnologique/LogoVeilleTecho_Sujet_AMD.svg" alt="" loading="lazy" decoding="async">AMD
+              </span>
+              <span class="skill-chip">
+                <img src="Images/Logos/VeilleTechnologique/LogoVeilleTechno_Sujet_NVidia.png" alt="" loading="lazy" decoding="async">NVIDIA
+              </span>
+              <span class="skill-chip">
+                <img src="Images/Logos/VeilleTechnologique/LogoVeilleTechno_Sujet_Intel.svg" alt="" loading="lazy" decoding="async">Intel
+              </span>
+            </div>
+          </div>
+
+          <div class="veille-block card green-hover reveal reveal-d1">
+            <h4>Outils de veille</h4>
+            <div class="skills-grid">
+              <span class="skill-chip">
+                <img src="Images/Logos/VeilleTechnologique/LogoVeilleTechno_Outils_FlipBoard.jpg" alt="" loading="lazy" decoding="async">Flipboard
+              </span>
+              <span class="skill-chip">
+                <img src="Images/Logos/VeilleTechnologique/LogoVeilleTechno-Outils_Mention.jpg" alt="" loading="lazy" decoding="async">Mention
+              </span>
+              <span class="skill-chip">
+                <img src="Images/Logos/VeilleTechnologique/LogoVeilleTechno_Outils_GoogleAlerts.png" alt="" loading="lazy" decoding="async">Google Alerts
+              </span>
+              <span class="skill-chip">
+                <img src="Images/Logos/VeilleTechnologique/LogoVeilleTechno_Outils_Feedly.png" alt="" loading="lazy" decoding="async">Feedly
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ─── Revue de presse ─── -->
+      <section class="section" style="padding-top:1.5rem;">
+        <p class="news-section-title reveal">News mensuelle</p>
+
+        <input type="radio" name="news-sort" id="sort-date" class="sr-input" checked>
+        <input type="radio" name="news-sort" id="sort-bornage" class="sr-input">
+        <div class="news-sort reveal">
+          <span class="news-sort-label">Tri</span>
+          <label class="news-sort-btn" for="sort-date">Date</label>
+          <label class="news-sort-btn" for="sort-bornage">Bornage</label>
+        </div>
+
+        <div class="news-grid reveal" id="news-date-view">
+
+          <div class="news-month">
+            <span class="news-month-label">Nov. 2026</span>
+            <a href="#" class="news-item" data-url="https://www.clubic.com/actualite-637612-microsoft-dit-tout-haut-les-noms-des-futurs-processeurs-d-amd-et-d-intel-encore-non-annonces.html" data-pdf="Pieces_Jointes/Articles/2026-11-01.pdf" data-date="2026-11-01" data-author="Nathan Le Gohlisse" data-bornage="CPU" data-summary="Lors d'une présentation sur l'intelligence hybride de Windows, Microsoft dévoile par inadvertance les noms des prochaines générations de processeurs non annoncées : AMD Ryzen AI 500 (architecture Zen 6) et Intel Core Ultra Series 4 (Nova Lake), attendus pour le CES 2027.">
+              <span class="news-title">Ryzen AI 500 &amp; Intel Nova Lake dévoilés</span>
+              <span class="news-src">clubic.com</span>
+            </a>
+            <a href="#" class="news-item" data-url="https://www.clubic.com/actualite-639970-apres-amd-des-utilisateurs-de-nvidia-signalent-des-ecritures-sur-leur-ssd.html" data-pdf="Pieces_Jointes/Articles/2026-11-02.pdf" data-date="2026-11-02" data-author="clubic.com" data-bornage="Drivers" data-summary="Après des signalements similaires chez AMD, des utilisateurs de cartes NVIDIA relèvent un bug du processus NVDisplay.Container.exe réécrivant en boucle un fichier journal sur le SSD en arrière-plan, générant des écritures disque excessives.">
+              <span class="news-title">Bug d'écritures SSD sur pilotes NVIDIA</span>
+              <span class="news-src">clubic.com</span>
+            </a>
+          </div>
+
+          <div class="news-month">
+            <span class="news-month-label">Oct. 2026</span>
+            <a href="#" class="news-item" data-url="https://www.clubic.com/actualite-634672-nvidia-dement-l-arret-des-rtx-5090-mais-confirme-des-stocks-tres-limites.html" data-pdf="Pieces_Jointes/Articles/2026-10-01.pdf" data-date="2026-10-01" data-author="clubic.com" data-bornage="GPU" data-summary="Face aux rumeurs de fin de commercialisation, NVIDIA dément l'arrêt de la GeForce RTX 5090 mais reconnaît des tensions d'approvisionnement et des stocks très limités, sous la pression de la demande IA et mémoire.">
+              <span class="news-title">RTX 5090 : stocks très limités</span>
+              <span class="news-src">clubic.com</span>
+            </a>
+            <a href="#" class="news-item" data-url="https://www.clubic.com/actualite-636736-intel-perd-pres-d-un-quart-de-sa-valeur-en-bourse-plombe-par-le-ralentissement-des-pc.html" data-pdf="Pieces_Jointes/Articles/2026-10-02.pdf" data-date="2026-10-02" data-author="clubic.com" data-bornage="CPU" data-summary="Touché par le ralentissement du marché PC et les difficultés d'approvisionnement en mémoire, Intel perd près d'un quart de sa valeur en Bourse fin octobre et anticipe des répercussions durables sur le secteur en 2027.">
+              <span class="news-title">Intel plombé par le ralentissement PC</span>
+              <span class="news-src">clubic.com</span>
+            </a>
+          </div>
+
+          <div class="news-month">
+            <span class="news-month-label">Sept. 2026</span>
+            <a href="#" class="news-item" data-url="https://www.clubic.com/actualite-627664-malgre-le-sursis-accorde-a-windows-10-jusqu-en-2027-nvidia-lachera-les-joueurs-des-novembre-prochain.html" data-pdf="Pieces_Jointes/Articles/2026-09-01.pdf" data-date="2026-09-01" data-author="clubic.com" data-bornage="Drivers" data-summary="Malgré l'extension de sécurité de Windows 10, NVIDIA confirme l'arrêt des pilotes GeForce Game Ready sur Windows 10 après octobre 2026 : les nouvelles optimisations jeu deviennent exclusives à Windows 11, seuls les correctifs de sécurité étant maintenus.">
+              <span class="news-title">NVIDIA stoppe les pilotes Game Ready Win 10</span>
+              <span class="news-src">clubic.com</span>
+            </a>
+            <a href="#" class="news-item" data-url="https://www.clubic.com/actualite-630049-sortira-sortira-pas-le-flou-autour-d-eventuelles-grosses-sorties-gpu-en-2027.html" data-pdf="Pieces_Jointes/Articles/2026-09-02.pdf" data-date="2026-09-02" data-author="clubic.com" data-bornage="GPU" data-summary="Entre priorité donnée aux accélérateurs IA et tensions sur la mémoire GDDR7/HBM, le calendrier des prochaines cartes graphiques grand public chez NVIDIA et AMD reste incertain, laissant planer le doute sur l'ampleur des lancements GPU en 2027.">
+              <span class="news-title">Flou autour des sorties GPU en 2027</span>
+              <span class="news-src">clubic.com</span>
+            </a>
+          </div>
+
+          <div class="news-month">
+            <span class="news-month-label">Août 2026</span>
+            <a href="#" class="news-item" data-url="https://www.intel.com/content/www/us/en/newsroom/news/client-computing/intel-outlines-architectures-for-agentic-ai-at-hot-chips-2026.html" data-pdf="Pieces_Jointes/Articles/2026-08-01.pdf" data-date="2026-08-01" data-author="intel.com" data-bornage="CPU" data-summary="À Hot Chips 2026, Intel dévoile ses futures architectures taillées pour l'IA agentique, dont les processeurs serveur Xeon Diamond Rapids (gravés en Intel 18A-P), les SoC Wildcat Lake et le GPU d'inférence Crescent Island.">
+              <span class="news-title">Hot Chips 2026 : architectures IA Intel</span>
+              <span class="news-src">intel.com</span>
+            </a>
+            <a href="#" class="news-item" data-url="https://www.clubic.com/actualite-638227-vous-en-doutiez-lisa-su-l-affirme-amd-est-desormais-une-entreprise-d-abord-tournee-vers-les-data-centers.html" data-pdf="Pieces_Jointes/Articles/2026-08-02.pdf" data-date="2026-08-02" data-author="clubic.com" data-bornage="CPU" data-summary="Lisa Su officialise le virage stratégique d'AMD : portée par la demande en IA et serveurs EPYC, l'entreprise est désormais prioritairement tournée vers les data centers, au détriment du segment grand public.">
+              <span class="news-title">AMD désormais « data center first »</span>
+              <span class="news-src">clubic.com</span>
+            </a>
+          </div>
+
+          <div class="news-month">
+            <span class="news-month-label">Juil. 2026</span>
+            <a href="#" class="news-item" data-url="https://www.clubic.com/actualite-617854-windows-11-26h2-microsoft-s-allie-avec-nvidia-amd-et-intel-pour-traquer-les-bugs-directx.html" data-pdf="Pieces_Jointes/Articles/2026-07-01.pdf" data-date="2026-07-01" data-author="clubic.com" data-bornage="Drivers" data-summary="Microsoft s'allie avec NVIDIA, AMD et Intel pour intégrer dans Windows 11 26H2 de nouveaux outils de diagnostic (DirectX Dump Files / TDR) permettant d'identifier et de corriger plus vite les plantages graphiques et pilotes.">
+              <span class="news-title">Windows 11 26H2 : traque des bugs DirectX</span>
+              <span class="news-src">clubic.com</span>
+            </a>
+            <a href="#" class="news-item" data-url="https://www.tomshardware.com/pc-components/cpus/intel-continues-layoffs-with-cuts-to-its-it-department-hundreds-of-employees-reportedly-affected-companys-workforce-reduced-by-27-800-under-lip-bu-tan" data-pdf="Pieces_Jointes/Articles/2026-07-02.pdf" data-date="2026-07-02" data-author="tomshardware.com" data-bornage="CPU" data-summary="Sous la direction de Lip-Bu Tan, Intel poursuit sa restructuration pour réduire ses coûts opérationnels, touchant ses départements IT, Data Center et IA, dans un contexte de redressement industriel autour de la gravure 18A.">
+              <span class="news-title">Restructuration et coupes chez Intel</span>
+              <span class="news-src">tomshardware.com</span>
+            </a>
+          </div>
+
+          <div class="news-month">
+            <span class="news-month-label">Juin 2026</span>
+            <a href="#" class="news-item" data-url="https://blog.itcreations.com/computex-2026-amd-announcement-recap/" data-pdf="Pieces_Jointes/Articles/2026-06-01.pdf" data-date="2026-06-01" data-author="blog.itcreations.com" data-bornage="CPU" data-summary="Au Computex 2026, AMD célèbre les 10 ans de l'AM4 avec une réédition du Ryzen 7 5800X3D, annonce le Ryzen 7 7700X3D sur AM5, lance la Radeon RX 9070 GRE mondialement et prolonge le support AM5 jusqu'en 2029.">
+              <span class="news-title">Computex 2026 : AM5 jusqu'en 2029 &amp; X3D</span>
+              <span class="news-src">blog.itcreations.com</span>
+            </a>
+            <a href="#" class="news-item" data-url="https://blog.itcreations.com/computex-2026-intel-announcement-recap/" data-pdf="Pieces_Jointes/Articles/2026-06-02.pdf" data-date="2026-06-02" data-author="blog.itcreations.com" data-bornage="CPU" data-summary="Intel profite du Computex 2026 pour détailler ses avancées sur le nœud Intel 18A, les processeurs serveur Xeon 6+ « Clearwater Forest » (jusqu'à 288 cœurs E-cores Darkmont) et ses ambitions en inférence IA.">
+              <span class="news-title">Computex 2026 : Xeon 6+ &amp; Intel 18A</span>
+              <span class="news-src">blog.itcreations.com</span>
+            </a>
+          </div>
+
+          <div class="news-month">
+            <span class="news-month-label">Mai 2026</span>
+            <a href="#" class="news-item" data-url="https://www.clubic.com/actualite-611617-le-premier-gpu-chinois-certifie-windows-est-aussi-puissant-qu-une-rtx-4060.html" data-pdf="Pieces_Jointes/Articles/2026-05-01.pdf" data-date="2026-05-01" data-author="clubic.com" data-bornage="Drivers" data-summary="Pour la première fois, un GPU conçu en Chine (Lisuan Tech) obtient la certification logicielle WHQL de Microsoft sous Windows, avec des performances annoncées comparables à une GeForce RTX 4060.">
+              <span class="news-title">Premier GPU chinois certifié WHQL Windows</span>
+              <span class="news-src">clubic.com</span>
+            </a>
+            <a href="#" class="news-item" data-url="https://www.clubic.com/actualite-577779-nvidia-ecrase-plus-que-jamais-le-marche-de-la-carte-graphique-et-laisse-des-miettes-a-amd-et-intel.html" data-pdf="Pieces_Jointes/Articles/2026-05-02.pdf" data-date="2026-05-02" data-author="clubic.com" data-bornage="GPU" data-summary="D'après Jon Peddie Research, NVIDIA consolide sa position ultra-dominante sur le marché des cartes graphiques dédiées grand public, ne laissant qu'une part résiduelle à AMD et Intel.">
+              <span class="news-title">NVIDIA écrase le marché des GPU dédiés</span>
+              <span class="news-src">clubic.com</span>
+            </a>
+          </div>
+
+          <div class="news-month">
+            <span class="news-month-label">Avril 2026</span>
+            <a href="#" class="news-item" data-url="https://www.clubic.com/actualite-608644-sifive-nvidia-prepare-son-cheval-de-troie-dans-l-ecosysteme-ouvert-risc-v.html" data-pdf="Pieces_Jointes/Articles/2026-04-01.pdf" data-date="2026-04-01" data-author="clubic.com" data-bornage="GPU" data-summary="NVIDIA participe à une levée de fonds de 400 millions de dollars dans SiFive, spécialiste de l'architecture ouverte RISC-V, afin d'interconnecter NVLink et CUDA avec les futurs processeurs RISC-V en data center.">
+              <span class="news-title">NVIDIA investit dans SiFive et RISC-V</span>
+              <span class="news-src">clubic.com</span>
+            </a>
+            <a href="#" class="news-item" data-url="https://www.clubic.com/actualite-610840-le-coup-de-massue-intel-pourrait-delaisser-les-joueurs-jusqu-en-2027-voire-pire.html" data-pdf="Pieces_Jointes/Articles/2026-04-02.pdf" data-date="2026-04-02" data-author="clubic.com" data-bornage="GPU" data-summary="Selon plusieurs rapports, Intel réorienterait sa feuille de route graphique après Alchemist et Battlemage pour privilégier ses circuits intégrés (iGPU Arc Xe3 / Panther Lake) au détriment de nouvelles cartes dédiées gaming à court terme.">
+              <span class="news-title">Intel : incertitudes sur les GPU dédiés</span>
+              <span class="news-src">clubic.com</span>
+            </a>
+          </div>
+
+          <div class="news-month">
+            <span class="news-month-label">Mars 2026</span>
+            <a href="#" class="news-item" data-url="https://www.clubic.com/actualite-602905-arrow-lake-refresh-intel-vise-une-presentation-des-puces-le-11-mars.html" data-pdf="Pieces_Jointes/Articles/2026-03-01.pdf" data-date="2026-03-01" data-author="Nerces" data-bornage="CPU" data-summary="Intel prépare une révision de sa gamme Arrow Lake avec deux dates clés : le 11 mars pour la présentation et le 23 mars pour le lancement. Cette mise à jour vise à améliorer les performances en attendant l'arrivée de la génération Nova Lake prévue début 2027.">
+              <span class="news-title">Intel Arrow Lake Refresh</span>
+              <span class="news-src">clubic.com</span>
+            </a>
+            <a href="#" class="news-item" data-url="https://kulturegeek.fr/news-348076/nvidia-investit-4-milliards-dollars-photonique-lia" data-pdf="Pieces_Jointes/Articles/2026-03-02.pdf" data-date="2026-03-02" data-author="Jean-Baptiste A." data-bornage="GPU" data-summary="Nvidia investit 4 milliards de dollars dans Lumentum et Coherent, deux fabricants américains de composants optiques essentiels aux data centers. Ces partenariats visent à renforcer l'écosystème IA via des connexions à très haute bande passante dans les centres de données.">
+              <span class="news-title">Nvidia investit dans la photonique</span>
+              <span class="news-src">kulturegeek.fr</span>
+            </a>
+          </div>
+
+          <div class="news-month">
+            <span class="news-month-label">Févr. 2026</span>
+            <a href="#" class="news-item" data-url="https://www.touslesdrivers.com/index.php?v_page=3&v_code=9051" data-pdf="Pieces_Jointes/Articles/2026-02-01.pdf" data-date="2026-02-01" data-author="Julien Sambourg" data-bornage="Drivers" data-summary="NVIDIA corrige quatre vulnérabilités de niveau élevé (score CVSS 7.8) dans son pilote graphique, affectant Windows (CVE-2025-33217, CVE-2025-33218) et Linux (CVE-2025-33219, CVE-2025-33220). Ces failles permettaient l'exécution de code arbitraire et l'élévation de privilèges.">
+              <span class="news-title">Nvidia corrige une faille critique</span>
+              <span class="news-src">touslesdrivers.com</span>
+            </a>
+            <a href="#" class="news-item" data-url="https://www.mixvale.com.br/2026/02/07/valve-revele-steam-machine-avec-un-processeur-zen-4-pour-concurrencer-directement-la-ps5-et-la-xbox-series-x-fr/" data-pdf="Pieces_Jointes/Articles/2026-02-02.pdf" data-date="2026-02-02" data-author="mixvale.com.br" data-bornage="CPU" data-summary="Valve annonce le Steam Machine, une console de jeu compacte équipée d'un processeur AMD Zen 4 personnalisé et d'un GPU RDNA 3. L'appareil est conçu pour concurrencer directement la PlayStation 5 et la Xbox Series X sur le marché du jeu salon.">
+              <span class="news-title">Steam Machine × AMD Zen 4</span>
+              <span class="news-src">mixvale.com.br</span>
+            </a>
+          </div>
+
+          <div class="news-month">
+            <span class="news-month-label">Janv. 2026</span>
+            <a href="#" class="news-item" data-url="https://fr.investing.com/news/stock-market-news/le-cours-dintel-bondit-apres-la-presentation-des-processeurs-ia-de-nouvelle-generation-3210614" data-pdf="Pieces_Jointes/Articles/2026-01-01.pdf" data-date="2026-01-01" data-author="Louis Juricic" data-bornage="CPU" data-summary="Le cours d'Intel bondit de 8 % après la présentation au CES de Las Vegas des processeurs Panther Lake (Core Ultra Series 3), construits sur la technologie de gravure 18A. Les commandes débutent le 6 janvier avec une disponibilité mondiale à partir du 27 janvier.">
+              <span class="news-title">Intel bondit grâce aux processeurs IA</span>
+              <span class="news-src">fr.investing.com</span>
+            </a>
+            <a href="#" class="news-item" data-url="https://www.lagazettefrance.fr/article/nvidia-a-lance-la-production-de-ses-nouvelles-puces-ia-attendues-au-deuxieme-semestre" data-pdf="Pieces_Jointes/Articles/2026-01-02.pdf" data-date="2026-01-02" data-author="AFP" data-bornage="GPU" data-summary="Nvidia lance la production de ses processeurs Vera (CPU) et Rubin (GPU), plus rapides et moins énergivores que leurs prédécesseurs. Annoncés par Jensen Huang au CES, ces puces IA de nouvelle génération sont attendues pour le second semestre 2026.">
+              <span class="news-title">Nouvelles puces IA Nvidia</span>
+              <span class="news-src">lagazettefrance.fr</span>
+            </a>
+          </div>
+
+          <div class="news-month">
+            <span class="news-month-label">Déc. 2025</span>
+            <a href="#" class="news-item" data-url="https://www.lemagit.fr/actualites/366636286/Fine-tuning-avec-Nemotron-3-Nvidia-met-le-pied-a-letrier-des-entreprises" data-pdf="Pieces_Jointes/Articles/2025-12-01.pdf" data-date="2025-12-01" data-author="Gaétan Raoul" data-bornage="GPU" data-summary="Nvidia lance Nemotron 3, une collection de LLM (Nano, Super, Ultra) avec une architecture optimisée pour le fine-tuning en entreprise. Le modèle Nano dispose de 30 milliards de paramètres mais n'en active que 3 milliards à l'inférence, réduisant considérablement les coûts de déploiement.">
+              <span class="news-title">Nvidia dévoile Nemotron 3</span>
+              <span class="news-src">lemagit.fr</span>
+            </a>
+            <a href="#" class="news-item" data-url="https://www.igen.fr/iphone/2025/12/intel-pourrait-produire-les-puces-a22-des-iphone-de-2028-153769" data-pdf="Pieces_Jointes/Articles/2025-12-02.pdf" data-date="2025-12-02" data-author="Greg Onizuka" data-bornage="CPU" data-summary="Selon des rumeurs, Apple pourrait confier à Intel la production des puces A22 destinées aux iPhone de 2028. Ce serait un retournement historique, TSMC détenant actuellement le quasi-monopole de la fabrication des SoC Apple depuis 2010.">
+              <span class="news-title">Intel fournira les puces iPhone ?</span>
+              <span class="news-src">igen.fr</span>
+            </a>
+          </div>
+
+          <div class="news-month">
+            <span class="news-month-label">Nov. 2025</span>
+            <a href="#" class="news-item" data-url="https://www.clubic.com/actualite-588493-les-cartes-graphiques-vont-bientot-subir-une-nouvelle-hausse-de-prix-et-c-est-amd-qui-le-precise.html" data-pdf="Pieces_Jointes/Articles/2025-11-01.pdf" data-date="2025-11-01" data-author="Nerces" data-bornage="GPU" data-summary="AMD confirme une hausse imminente du prix des cartes graphiques, estimée à au moins 10 %. Cette augmentation, attendue après le Black Friday, impacte l'ensemble du marché des GPU dédiés en raison de la hausse des coûts de production.">
+              <span class="news-title">Nouvelle hausse de prix des GPU</span>
+              <span class="news-src">clubic.com</span>
+            </a>
+            <a href="#" class="news-item" data-url="https://www.comptoir-hardware.com/actus/modding-et-systemes/48420-nvidia-domine-linux-progresse-windows-10-sefface-novembre-sur-steam.html" data-pdf="Pieces_Jointes/Articles/2025-11-02.pdf" data-date="2025-11-02" data-author="Rémi B." data-bornage="GPU" data-summary="L'enquête Steam de novembre 2025 montre que Nvidia consolide sa domination avec la RTX 5070 en forte progression mensuelle. Linux gagne du terrain auprès des joueurs tandis que Windows 10 recule à l'approche de la fin officielle de son support.">
+              <span class="news-title">Nvidia domine Steam — Linux progresse</span>
+              <span class="news-src">comptoir-hardware.com</span>
+            </a>
+          </div>
+
+          <div class="news-month">
+            <span class="news-month-label">Oct. 2025</span>
+            <a href="#" class="news-item" data-url="https://fr.gamegpu.com/news/zhelezo/Nvidia-et-AMD-se-preparent-%C3%A0-une-hausse-des-prix-en-2026" data-pdf="Pieces_Jointes/Articles/2025-10-01.pdf" data-date="2025-10-01" data-author="gamegpu.com" data-bornage="GPU" data-summary="Nvidia et AMD se préparent à une hausse des prix en 2026 liée à la pénurie mondiale de mémoire DRAM. Cette tension sur l'approvisionnement impacte directement le coût de fabrication des cartes graphiques et autres composants haute performance.">
+              <span class="news-title">Pénurie de DRAM — hausse des prix</span>
+              <span class="news-src">gamegpu.com</span>
+            </a>
+            <a href="#" class="news-item" data-url="https://www.clubic.com/actualite-589858-sur-steam-la-rtx-5070-carbure-et-laisse-la-4070-sur-le-carreau.html" data-pdf="Pieces_Jointes/Articles/2025-10-02.pdf" data-date="2025-10-02" data-author="Mérouan Goumiri" data-bornage="GPU" data-summary="La GeForce RTX 5070 enregistre la plus forte hausse de parts de marché sur Steam en novembre 2025 (+0,35 %), atteignant la 11e position du classement. Elle devient le GPU phare de la gamme RTX 50 et dépasse sa devancière la RTX 4070.">
+              <span class="news-title">Record de la RTX 5070 sur Steam</span>
+              <span class="news-src">clubic.com</span>
+            </a>
+          </div>
+
+          <div class="news-month">
+            <span class="news-month-label">Sept. 2025</span>
+            <a href="#" class="news-item" data-url="https://www.cowcotland.com/news/97761/maj-amd-ryzen-5-9500f-et-ryzen-7-9700f-ils-arrivent.html" data-pdf="Pieces_Jointes/Articles/2025-09-01.pdf" data-date="2025-09-01" data-author="cowcotland.com" data-bornage="CPU" data-summary="AMD élargit sa gamme AM5 avec les Ryzen 5 9500F et Ryzen 7 9700F, deux processeurs Granite Ridge dépourvus d'iGPU. Repérés dans les listings de plusieurs revendeurs, ces références semblent proches d'un lancement officiel.">
+              <span class="news-title">Nouveaux Ryzen 9500F &amp; 9700F</span>
+              <span class="news-src">cowcotland.com</span>
+            </a>
+            <a href="#" class="news-item" data-url="https://www.amd.com/en/blogs/2025/amd-introduces-epyc-embedded-4005-processors-for-low" data-pdf="Pieces_Jointes/Articles/2025-09-02.pdf" data-date="2025-09-02" data-author="amd.com" data-bornage="CPU" data-summary="AMD lance les processeurs EPYC Embedded 4005, destinés aux serveurs d'entrée de gamme et aux applications embarquées à faible consommation. Cette nouvelle gamme vise le marché des infrastructures edge et des systèmes embarqués industriels.">
+              <span class="news-title">Nouveaux serveurs EPYC 4005</span>
+              <span class="news-src">amd.com</span>
+            </a>
+          </div>
+
+          <div class="news-month">
+            <span class="news-month-label">Août 2025</span>
+            <a href="#" class="news-item" data-url="https://fr.gamegpu.com/news/zhelezo/Pilote-AMD-Adrenalin-Edition-25--prise-en-charge-de-la-carte-graphiqu-RX-8-FSR-1-V-am%C3%A9liorations-pour-Cyberpunk-9060-i-pour-Battlefield-4-i-Warzone" data-pdf="Pieces_Jointes/Articles/2025-08-01.pdf" data-date="2025-08-01" data-author="gamegpu.com" data-bornage="Drivers" data-summary="AMD déploie une mise à jour du pilote Adrenalin Edition 25 avec la prise en charge de la Radeon RX 9060 et des améliorations FSR. Des optimisations spécifiques sont apportées pour Cyberpunk 2077, Battlefield 4 et Call of Duty Warzone.">
+              <span class="news-title">Mise à jour drivers AMD Adrenalin</span>
+              <span class="news-src">gamegpu.com</span>
+            </a>
+            <a href="#" class="news-item" data-url="https://support.hp.com/be-fr/document/ish_12887728-12888891-16/hpsbhf04045" data-pdf="Pieces_Jointes/Articles/2025-08-02.pdf" data-date="2025-08-02" data-author="support.hp.com" data-bornage="Drivers" data-summary="AMD signale plusieurs vulnérabilités critiques dans le firmware UEFI de certains processeurs clients (score CVSS jusqu'à 8.4). Ces failles permettent l'élévation de privilèges et l'exécution de code arbitraire, corrigées par des mises à jour micrologicielles.">
+              <span class="news-title">Vulnérabilité sécurité UEFI</span>
+              <span class="news-src">support.hp.com</span>
+            </a>
+          </div>
+
+          <div class="news-month">
+            <span class="news-month-label">Juil. 2025</span>
+            <a href="#" class="news-item" data-url="https://www.topcpu.net/fr/news/intel-unveils-latest-processor-roadmap" data-pdf="Pieces_Jointes/Articles/2025-07-01.pdf" data-date="2025-07-01" data-author="topcpu.net" data-bornage="CPU" data-summary="Intel dévoile sa feuille de route avec les processeurs Panther Lake (gravure 18A) et Nova Lake pour le grand public, ainsi que Diamond Rapids et Clearwater Forest pour les serveurs. Le premier Panther Lake mobile est attendu fin 2025.">
+              <span class="news-title">Roadmap Intel dévoilée</span>
+              <span class="news-src">topcpu.net</span>
+            </a>
+            <a href="#" class="news-item" data-url="https://fudzilla.com/news/pc-hardware/61385-intel-slashes-prices-on-core-ultra-5-cpus" data-pdf="Pieces_Jointes/Articles/2025-07-02.pdf" data-date="2025-07-02" data-author="fudzilla.com" data-bornage="CPU" data-summary="Intel réduit les prix de ses processeurs Core Ultra 5 de la gamme Arrow Lake pour rester compétitif face à AMD. Cette stratégie tarifaire agressive vise à reconquérir des parts de marché sur le segment milieu de gamme desktop.">
+              <span class="news-title">Intel Arrow Lake — Baisses de prix</span>
+              <span class="news-src">fudzilla.com</span>
+            </a>
+          </div>
+
+          <div class="news-month">
+            <span class="news-month-label">Juin 2025</span>
+            <a href="#" class="news-item" data-url="https://www.windowscentral.com/gaming/pc-gaming/intel-arc-graphics-driver-june-2025-audio" data-pdf="Pieces_Jointes/Articles/2025-06-01.pdf" data-date="2025-06-01" data-author="windowscentral.com" data-bornage="Drivers" data-summary="Intel publie le pilote Arc 32.0.101.6877 corrigeant un bug audio affectant les handhelds gaming équipés de processeurs Core Ultra Series 2, notamment le MSI Claw 8 AI+. Une mise à jour critique pour les joueurs sur PC portables.">
+              <span class="news-title">Pilotes audio Intel Arc corrigés</span>
+              <span class="news-src">windowscentral.com</span>
+            </a>
+            <a href="#" class="news-item" data-url="https://downloadmirror.intel.com/856438/releasenotes_101.6876_.pdf" data-pdf="Pieces_Jointes/Articles/2025-06-02.pdf" data-date="2025-06-02" data-author="intel.com" data-bornage="Drivers" data-summary="Les notes de version du pilote Intel Arc corrigent des artefacts visuels sur les cartes graphiques Arc B Series. Cette mise à jour améliore la stabilité graphique et résout plusieurs problèmes de rendu signalés par les utilisateurs.">
+              <span class="news-title">Arc B Series — Artefacts visuels</span>
+              <span class="news-src">intel.com</span>
+            </a>
+          </div>
+
+          <div class="news-month">
+            <span class="news-month-label">Mai 2025</span>
+            <a href="#" class="news-item" data-url="https://www.comptoir-hardware.com/actus/cartes-graphiques/48277-nvidia-annihile-la-concurrence-sur-le-marche-des-cartes-graphiques-dediees-en-2025.html" data-pdf="Pieces_Jointes/Articles/2025-05-01.pdf" data-date="2025-05-01" data-author="comptoir-hardware.com" data-bornage="GPU" data-summary="Depuis le lancement des RTX 5090 et 5080, Nvidia détient plus de 90 % du marché des cartes graphiques dédiées selon Jon Peddie Research. L'entreprise annihile la concurrence d'AMD et Intel sur le segment des GPU desktop.">
+              <span class="news-title">Nvidia prend tout</span>
+              <span class="news-src">comptoir-hardware.com</span>
+            </a>
+            <a href="#" class="news-item" data-url="https://www.lesnumeriques.com/carte-graphique/amd-devoile-la-radeon-rx-9060-xt-une-reponse-pragmatique-a-la-rtx-5060-ti-n237083.html" data-pdf="Pieces_Jointes/Articles/2025-05-02.pdf" data-date="2025-05-02" data-author="lesnumeriques.com" data-bornage="GPU" data-summary="Présentée au Computex 2025, la Radeon RX 9060 XT d'AMD embarque 32 unités de calcul, jusqu'à 16 Go de GDDR6 et des accélérateurs IA. Elle entend rivaliser frontalement avec la RTX 5060 Ti de Nvidia sur le segment milieu de gamme.">
+              <span class="news-title">Nouvelle Radeon RX 9060 XT</span>
+              <span class="news-src">lesnumeriques.com</span>
+            </a>
+          </div>
+
+          <div class="news-month">
+            <span class="news-month-label">Avril 2025</span>
+            <a href="#" class="news-item" data-url="https://www.tomshardware.com/pc-components/motherboards/amd-patches-critical-zen-5%E2%80%91microcode%E2%80%91bug%E2%80%91partners-deliver-new-bios-with-agesa-1-2-0-3c" data-pdf="Pieces_Jointes/Articles/2025-04-01.pdf" data-date="2025-04-01" data-author="tomshardware.com" data-bornage="CPU" data-summary="AMD corrige un bug critique dans le microcode Zen 5 via la mise à jour AGESA 1.2.0.3c. Les partenaires fabricants de cartes mères déploient de nouveaux BIOS pour résoudre ce problème de stabilité affectant les processeurs Ryzen 9000.">
+              <span class="news-title">Faille critique chez AMD</span>
+              <span class="news-src">tomshardware.com</span>
+            </a>
+            <a href="#" class="news-item" data-url="https://www.qemu.org/blog/2025/04/" data-pdf="Pieces_Jointes/Articles/2025-04-02.pdf" data-date="2025-04-02" data-author="qemu.org" data-bornage="Drivers" data-summary="QEMU publie la version 10.0.0 avec plus de 2800 commits de 211 contributeurs. Cette mise à jour majeure de l'émulateur open source renforce la sécurité de la virtualisation et apporte de nombreuses améliorations de stabilité.">
+              <span class="news-title">Renforcement de la sécurité</span>
+              <span class="news-src">qemu.org</span>
+            </a>
+          </div>
+
+          <div class="news-month">
+            <span class="news-month-label">Mars 2025</span>
+            <a href="#" class="news-item" data-url="https://www.techpowerup.com/333535/alibaba-adds-new-c930-server-grade-chip-to-xuantie-risc-v-processor-series" data-pdf="Pieces_Jointes/Articles/2025-03-01.pdf" data-date="2025-03-01" data-author="techpowerup.com" data-bornage="CPU" data-summary="Alibaba (Damo Academy) lance le C930, un processeur serveur basé sur l'architecture RISC-V open source ajouté à la série XuanTie. Destiné au calcul haute performance (HPC), les premières livraisons aux clients sont prévues pour mars 2025.">
+              <span class="news-title">Processeur RISC-V Chinois</span>
+              <span class="news-src">techpowerup.com</span>
+            </a>
+            <a href="#" class="news-item" data-url="https://www.microsoft.com/en-us/security/blog/2025/03/05/silk-typhoon-targeting-it-supply-chain/" data-pdf="Pieces_Jointes/Articles/2025-03-02.pdf" data-date="2025-03-02" data-author="microsoft.com" data-bornage="Drivers" data-summary="Microsoft identifie un changement de tactique du groupe d'espionnage chinois Silk Typhoon, qui cible désormais les outils de gestion IT et les applications cloud. L'objectif est d'infiltrer les réseaux d'entreprise via la supply chain logicielle pour voler des données sensibles.">
+              <span class="news-title">Les risques d'attaques chinoises</span>
+              <span class="news-src">microsoft.com</span>
+            </a>
+          </div>
+
+        </div>
+
+        <div class="news-bornage-view reveal" id="news-bornage-view">
+          <div class="news-bornage-columns">
+            <div class="news-bornage-col" data-bornage-col="CPU">
+              <p class="news-bornage-title">CPU</p>
+              <div class="news-bornage-list"></div>
+            </div>
+            <div class="news-bornage-col" data-bornage-col="GPU">
+              <p class="news-bornage-title">GPU</p>
+              <div class="news-bornage-list"></div>
+            </div>
+            <div class="news-bornage-col" data-bornage-col="Drivers">
+              <p class="news-bornage-title">Drivers</p>
+              <div class="news-bornage-list"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <footer>
+    <p>Hugo CANU — BTS SIO SLAM 2024–2027 &nbsp;·&nbsp; <a href="https://github.com/HCWhite1" target="_blank">GitHub</a></p>
+  </footer>
+
+  <div class="modal-overlay" id="news-modal-overlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="news-modal-title">
+      <div class="modal-header">
+        <div>
+          <p class="modal-tag">Article de veille</p>
+          <h3 class="modal-title" id="news-modal-title">Titre</h3>
+        </div>
+        <button class="modal-close" type="button" data-news-close>Fermer</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-desc" id="news-modal-summary">Résumé bref de l'article.</p>
+
+        <div class="news-modal-meta">
+          <div class="news-modal-meta-item">
+            <span class="meta-label">Auteur</span>
+            <span class="meta-value" id="news-modal-author">A definir</span>
+          </div>
+          <div class="news-modal-meta-item">
+            <span class="meta-label">Bornage</span>
+            <span class="meta-value" id="news-modal-bornage">A definir</span>
+          </div>
+          <div class="news-modal-meta-item">
+            <span class="meta-label">Date</span>
+            <span class="meta-value" id="news-modal-date">-</span>
+          </div>
+        </div>
+
+        <div class="news-modal-actions">
+          <a class="btn btn-accent" id="news-modal-pdf" href="#" target="_blank" rel="noopener">Ouvrir le PDF</a>
+          <a class="btn btn-outline" id="news-modal-source" href="#" target="_blank" rel="noopener">Source originale</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a href="#" id="back-to-top" aria-label="Retour en haut">
+    <svg viewBox="0 0 14 14" fill="none"><path d="M7 11V3M3 7l4-4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

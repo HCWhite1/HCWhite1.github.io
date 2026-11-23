@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hugo CANU — Portfolio BTS SIO SLAM</title>
+  <link rel="icon" type="image/x-icon" href="favicon_io/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+  <meta name="description" content="Portfolio de Hugo CANU, étudiant en BTS SIO SLAM au Campus la Châtaigneraie.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <canvas id="matrix-canvas"></canvas>
+  <svg hidden aria-hidden="true"><symbol id="ic-yt" viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.4 31.4 0 0 0 0 12a31.4 31.4 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.4 31.4 0 0 0 24 12a31.4 31.4 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></symbol></svg>
+
+  <!-- ─── Navbar ─── -->
+  <nav class="navbar">
+    <a class="navbar-brand" href="index.html">HC<span class="acc">.</span></a>
+    <input type="checkbox" id="nav-toggle" class="sr-input nav-toggle-input" aria-hidden="true">
+    <ul class="navbar-links">
+      <li><a href="index.html" class="active" aria-current="page">Accueil</a></li>
+      <li><a href="veille.html">Veille</a></li>
+      <li><a href="stages.html">Stages</a></li>
+      <li><a href="realisations.html">Réalisations</a></li>
+      <li><a href="rectorat.html">Rectorat</a></li>
+    </ul>
+    <label for="nav-toggle" class="navbar-toggle" aria-label="Menu de navigation"><span></span><span></span><span></span></label>
+    <a class="navbar-gh" href="https://github.com/HCWhite1" target="_blank" rel="noopener" aria-label="GitHub">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577
+          0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755
+          -1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305
+          3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38
+          1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399
+          3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24
+          2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81
+          1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592
+          24 12.297c0-6.627-5.373-12-12-12"/>
+      </svg>
+    </a>
+  </nav>
+
+  <!-- ─── Repère de sections (gauche) ─── -->
+  <aside class="section-spy" id="section-spy" aria-label="Sections de la page">
+    <a class="spy-link active" href="#hero" data-spy="hero">
+      <span class="spy-dot"></span>
+      <span class="spy-label">Accueil</span>
+    </a>
+    <a class="spy-link" href="#profil" data-spy="profil">
+      <span class="spy-dot"></span>
+      <span class="spy-label">À propos</span>
+    </a>
+    <a class="spy-link" href="#parcours" data-spy="parcours">
+      <span class="spy-dot"></span>
+      <span class="spy-label">Formation</span>
+    </a>
+    <a class="spy-link" href="#competences" data-spy="competences">
+      <span class="spy-dot"></span>
+      <span class="spy-label">Compétences</span>
+    </a>
+    <a class="spy-link" href="#experience" data-spy="experience">
+      <span class="spy-dot"></span>
+      <span class="spy-label">Expérience</span>
+    </a>
+  </aside>
+
+  <!-- ─── Hero ─── -->
+  <section id="hero">
+    <div class="hero-gradient"></div>
+    <div class="hero-content">
+      <div class="hero-left">
+        <p class="hero-eyebrow">Étudiant BTS SIO SLAM</p>
+        <h1 class="hero-name">
+          <span class="hero-name-text">CANU Hugo</span><span class="cursor" aria-hidden="true"></span>
+        </h1>
+        <div class="terminal-block">
+          <div class="terminal-header">
+            <span class="terminal-prompt">&gt;_</span>
+            <span class="terminal-title">.env</span>
+          </div>
+          <div class="terminal-body">
+            <p class="terminal-line">
+              <span class="t-var">$PHONE_NUM</span><span class="t-eq">=</span><span class="t-val">"06.47.11.97.72"</span>
+            </p>
+            <p class="terminal-line">
+              <span class="t-var">$EMAIL</span><span class="t-eq">=</span><span class="t-val">"hugo.canu@campus-la-chataigneraie.org"</span>
+            </p>
+            <p class="terminal-line">
+              <span class="t-var">$ADDRESS</span><span class="t-eq">=</span><span class="t-val">"76240 Bonsecours"</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="hero-photo-wrapper">
+        <img src="Images/MaPhoto.jpg" alt="Hugo CANU" class="hero-photo" loading="eager">
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>scroll</span>
+      <svg width="10" height="14" viewBox="0 0 10 14" fill="none">
+        <path d="M5 1v12M1 9l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </section>
+
+  <div class="page-wrapper">
+
+    <!-- ─── Profil ─── -->
+    <section class="section" id="profil">
+      <div class="container">
+        <p class="section-label reveal">Profil</p>
+        <h2 class="section-title reveal">À <span class="acc">propos</span></h2>
+        <div class="section-divider reveal"></div>
+        <div class="card green-hover reveal">
+          <p class="profile-text">
+            Dynamique et motivé, j'aime mettre en pratique mes compétences et connaissances
+            ainsi que progresser aux côtés de professionnels expérimentés. J'aimerais contribuer
+            à des projets concrets tout en développant mes compétences et ma compréhension
+            des métiers de l'informatique.
+          </p>
+
+          <div class="loisirs-block">
+            <p class="loisirs-heading">// Loisirs</p>
+            <div class="loisirs-layout">
+
+              <div class="loisirs-group">
+                <p class="loisirs-cat">Tech</p>
+                <div class="yt-list">
+                  <a class="yt-card" href="https://www.youtube.com/@Micode" target="_blank" rel="noopener">
+                    <img class="yt-avatar" src="Images/Loisirs/yt-micode.jpg" alt="Micode" loading="lazy">
+                    <span class="yt-info">
+                      <span class="yt-name">Micode</span>
+                      <span class="yt-meta">
+                        <svg class="yt-icon" aria-hidden="true"><use href="#ic-yt"/></svg>
+                        @Micode
+                      </span>
+                    </span>
+                    <span class="yt-ext" aria-hidden="true">↗</span>
+                  </a>
+                  <a class="yt-card" href="https://www.youtube.com/@V2F" target="_blank" rel="noopener">
+                    <img class="yt-avatar" src="Images/Loisirs/yt-v2f.jpg" alt="V2F" loading="lazy">
+                    <span class="yt-info">
+                      <span class="yt-name">V2F</span>
+                      <span class="yt-meta">
+                        <svg class="yt-icon" aria-hidden="true"><use href="#ic-yt"/></svg>
+                        @V2F
+                      </span>
+                    </span>
+                    <span class="yt-ext" aria-hidden="true">↗</span>
+                  </a>
+                  <a class="yt-card" href="https://www.youtube.com/@EliottMeunier" target="_blank" rel="noopener">
+                    <img class="yt-avatar" src="Images/Loisirs/yt-eliott.jpg" alt="Eliott Meunier" loading="lazy">
+                    <span class="yt-info">
+                      <span class="yt-name">Eliott Meunier</span>
+                      <span class="yt-meta">
+                        <svg class="yt-icon" aria-hidden="true"><use href="#ic-yt"/></svg>
+                        @EliottMeunier
+                      </span>
+                    </span>
+                    <span class="yt-ext" aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </div>
+
+              <div class="loisirs-group">
+                <p class="loisirs-cat">Anime</p>
+                <div class="poster-grid">
+                  <figure class="poster-card shot">
+                    <button type="button" class="poster-btn shot-btn" data-full="Images/Loisirs/eighty-six.jpg" aria-label="Agrandir Eighty Six">
+                      <img src="Images/Loisirs/eighty-six.jpg" alt="Eighty Six" loading="lazy">
+                    </button>
+                    <figcaption>Eighty Six</figcaption>
+                  </figure>
+                  <figure class="poster-card shot">
+                    <button type="button" class="poster-btn shot-btn" data-full="Images/Loisirs/akame-ga-kill.jpg" aria-label="Agrandir Akame Ga Kill">
+                      <img src="Images/Loisirs/akame-ga-kill.jpg" alt="Akame Ga Kill" loading="lazy">
+                    </button>
+                    <figcaption>Akame Ga Kill</figcaption>
+                  </figure>
+                  <figure class="poster-card shot">
+                    <button type="button" class="poster-btn shot-btn" data-full="Images/Loisirs/steins-gate.jpg" aria-label="Agrandir Steins;Gate">
+                      <img src="Images/Loisirs/steins-gate.jpg" alt="Steins;Gate" loading="lazy">
+                    </button>
+                    <figcaption>Steins;Gate</figcaption>
+                  </figure>
+                </div>
+              </div>
+
+              <div class="loisirs-group">
+                <p class="loisirs-cat">Manga</p>
+                <div class="poster-grid">
+                  <figure class="poster-card shot">
+                    <button type="button" class="poster-btn shot-btn" data-full="Images/Loisirs/tokyo-ghoul.jpg" aria-label="Agrandir Tokyo Ghoul">
+                      <img src="Images/Loisirs/tokyo-ghoul.jpg" alt="Tokyo Ghoul" loading="lazy">
+                    </button>
+                    <figcaption>Tokyo Ghoul</figcaption>
+                  </figure>
+                  <figure class="poster-card shot">
+                    <button type="button" class="poster-btn shot-btn" data-full="Images/Loisirs/one-punch-man.jpg" aria-label="Agrandir One Punch Man">
+                      <img src="Images/Loisirs/one-punch-man.jpg" alt="One Punch Man" loading="lazy">
+                    </button>
+                    <figcaption>One Punch Man</figcaption>
+                  </figure>
+                  <figure class="poster-card shot">
+                    <button type="button" class="poster-btn shot-btn" data-full="Images/Loisirs/hunter-x-hunter.jpg" aria-label="Agrandir Hunter x Hunter">
+                      <img src="Images/Loisirs/hunter-x-hunter.jpg" alt="Hunter x Hunter" loading="lazy">
+                    </button>
+                    <figcaption>Hunter &times; Hunter</figcaption>
+                  </figure>
+                </div>
+              </div>
+
+              <div class="loisirs-group">
+                <p class="loisirs-cat">Jeux Vidéo</p>
+                <div class="poster-grid cols-2">
+                  <figure class="poster-card shot">
+                    <button type="button" class="poster-btn shot-btn" data-full="Images/Loisirs/terraria.jpg" aria-label="Agrandir Terraria">
+                      <img src="Images/Loisirs/terraria.jpg" alt="Terraria" loading="lazy">
+                    </button>
+                    <figcaption>Terraria</figcaption>
+                  </figure>
+                  <figure class="poster-card shot">
+                    <button type="button" class="poster-btn shot-btn" data-full="Images/Loisirs/minecraft.jpg" aria-label="Agrandir Minecraft">
+                      <img src="Images/Loisirs/minecraft.jpg" alt="Minecraft" loading="lazy">
+                    </button>
+                    <figcaption>Minecraft</figcaption>
+                  </figure>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-sep">
+
+    <!-- ─── Formation & Diplômes / Certifications ─── -->
+    <section class="section" id="parcours">
+      <div class="container">
+        <div class="parcours-grid">
+
+          <!-- Formation -->
+          <div id="formation">
+            <p class="section-label reveal">Parcours</p>
+            <h2 class="section-title reveal"><span class="acc">Formation</span></h2>
+            <div class="section-divider reveal"></div>
+            <div class="timeline">
+
+              <div class="timeline-item current reveal">
+                <p class="timeline-date">2024 — 2027</p>
+                <p class="timeline-title">BTS Services Informatiques aux Organisations</p>
+                <p class="timeline-org">
+                  <img src="Images/Logos/Formation-Education/Logo_Chataigneraie.png" alt="" loading="lazy" decoding="async">
+                  <img src="Images/Logos/Formation-Education/Logo_BTS_SIO.png" alt="" loading="lazy" decoding="async">
+                  Campus la Châtaigneraie / Le Mesnil-Esnard
+                </p>
+                <p class="timeline-desc">Option Solutions Logicielles et Applications Métiers (SLAM)</p>
+              </div>
+
+              <div class="timeline-item reveal">
+                <p class="timeline-date">2023 — 2024</p>
+                <p class="timeline-title">1ère année de prépa intégrée ingénieur</p>
+                <p class="timeline-org">
+                  <img src="Images/Logos/Formation-Education/Logo_Cesi.png" alt="" loading="lazy" decoding="async">
+                  CESI Rouen
+                </p>
+              </div>
+
+              <div class="timeline-item reveal">
+                <p class="timeline-date">2022 — 2023</p>
+                <p class="timeline-title">Baccalauréat STI2D — option SIN</p>
+                <p class="timeline-org">
+                  <img src="Images/Logos/Formation-Education/Logo_Filiere_STI2D.jpg" alt="" loading="lazy" decoding="async">
+                  Lycée les Fontenelles, Louviers
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Diplômes & Certifications -->
+          <div id="diplomes">
+            <p class="section-label reveal">Certifications</p>
+            <h2 class="section-title reveal">Diplômes &amp; <span class="acc">certifications</span></h2>
+            <div class="section-divider reveal"></div>
+            <div class="certif-list">
+              <div class="certif-item reveal">
+                <img src="Images/Logos/Formation-Education/Logo_Filiere_STI2D.jpg" alt="STI2D" loading="lazy" decoding="async">
+                <span>Baccalauréat technologique STI2D — option SIN — mention Assez Bien (2023)</span>
+              </div>
+              <div class="certif-item reveal reveal-d1">
+                <img src="Images/Logos/Competences_Cybersécurité/Logo_ConcoursCastor.png" alt="Castor" loading="lazy" decoding="async">
+                <span>Attestation Castor Informatique — Catégorie Terminale Individuel</span>
+                <span class="score">270 pts</span>
+              </div>
+              <a href="Pieces_Jointes/HCA_Attestation_ANNSI.pdf" class="certif-item reveal reveal-d2" target="_blank" rel="noopener">
+                <img src="Images/Logos/Competences_Cybersécurité/Logo_Cyber_ANSSI.png" alt="ANSSI" loading="lazy" decoding="async">
+                <span>MOOC SecNumAcadémie — ANSSI</span>
+                <span class="doc-action">⬇ Télécharger</span>
+              </a>
+              <a href="Pieces_Jointes/RGPD.pdf" class="certif-item reveal reveal-d2" target="_blank" rel="noopener">
+                <img src="Images/Logos/Competences_Cybersécurité/Logo_RGPD.png" alt="RGPD" loading="lazy" decoding="async">
+                <span>Attestation RGPD</span>
+                <span class="doc-action">⬇ Télécharger</span>
+              </a>
+              <a href="Pieces_Jointes/Certification-Pix.pdf" class="certif-item reveal reveal-d2" target="_blank" rel="noopener">
+                <img src="Images/Logos/Competences_Cybersécurité/Logo_PIX.png" alt="PIX" loading="lazy" decoding="async">
+                <span>Certification PIX</span>
+                <span class="score">470+ pts</span>
+                <span class="doc-action">⬇ Télécharger</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-sep">
+
+    <!-- ─── Compétences ─── -->
+    <section class="section" id="competences">
+      <div class="container">
+        <p class="section-label reveal">Stack</p>
+        <h2 class="section-title reveal">Compétences <span class="acc">techniques</span></h2>
+        <div class="section-divider reveal"></div>
+
+        <div class="skills-categories">
+
+          <!-- Langages & Web -->
+          <div class="reveal">
+            <p class="skill-category-title">Langages &amp; Web</p>
+            <div class="skills-grid">
+              <span class="skill-chip" data-level="autonome" data-activities="erasmove,exercices-csharp"><img src="Images/Logos/Développement/LangagesDeProgrammation/Logo_Langage_Csharp.png"      alt="" loading="lazy" decoding="async">C#</span>
+              <span class="skill-chip" data-level="autonome" data-activities="scripts-discord,bogue-trello,algo-maths"><img src="Images/Logos/Développement/LangagesDeProgrammation/Logo_Langage_Python.png"      alt="" loading="lazy" decoding="async">Python</span>
+              <span class="skill-chip" data-level="autonome" data-activities="annuaire,annuaire-v2"><img src="Images/Logos/Développement/LangagesDeProgrammation/Logo_Langage_PHP.png"         alt="" loading="lazy" decoding="async">PHP</span>
+              <span class="skill-chip" data-level="autonome" data-activities="octagames,annuaire,annuaire-v2,stocks,portfolio"><img src="Images/Logos/Développement/LangagesDeProgrammation/Logo_Langage_JavaScript.webp" alt="" loading="lazy" decoding="async">JavaScript</span>
+              <span class="skill-chip" data-level="autonome" data-activities="octagames,stocks"><img src="Images/Logos/Développement/LangagesDeProgrammation/Logo_NodeJS.png"              alt="" loading="lazy" decoding="async">Node.js</span>
+              <span class="skill-chip" data-level="avance" data-activities="octagames,annuaire,annuaire-v2,portfolio"><img src="Images/Logos/Développement/LangagesDeProgrammation/Logo_Langage_HTML.png" alt="HTML" loading="lazy" decoding="async"><img src="Images/Logos/Développement/LangagesDeProgrammation/Logo_Langage_CSS.png" alt="CSS" loading="lazy" decoding="async">HTML / CSS</span>
+              <span class="skill-chip" data-level="autonome" data-activities="scripts-powershell,tp-powershell"><img src="Images/Logos/Développement/LangagesDeProgrammation/Logo_PowerShell.png"          alt="" loading="lazy" decoding="async">PowerShell</span>
+            </div>
+          </div>
+
+          <!-- Frameworks -->
+          <div class="reveal">
+            <p class="skill-category-title">Frameworks</p>
+            <div class="skills-grid">
+              <span class="skill-chip" data-level="autonome" data-activities="bogue,tp-symfony"><img src="Images/Logos/Développement/LangagesDeProgrammation/Logo_Framework_Symfony.webp"   alt="" loading="lazy" decoding="async">Symfony</span>
+              <span class="skill-chip" data-level="autonome" data-activities="erasmove,exercices-csharp"><img src="Images/Logos/Développement/LangagesDeProgrammation/Logo_Framework_.NET.webp"      alt="" loading="lazy" decoding="async">.NET</span>
+              <span class="skill-chip" data-level="autonome" data-activities="bogue,tp-symfony"><img src="Images/Logos/Développement/LangagesDeProgrammation/Logo_Framework_Twig.png"       alt="" loading="lazy" decoding="async">Twig</span>
+              <span class="skill-chip" data-level="autonome" data-activities="stocks"><img src="Images/Logos/Développement/LangagesDeProgrammation/Boostrap_Logo.png"             alt="" loading="lazy" decoding="async">Bootstrap</span>
+            </div>
+          </div>
+
+          <!-- Bases de données -->
+          <div class="reveal reveal-d1">
+            <p class="skill-category-title">Bases de données</p>
+            <div class="skills-grid">
+              <span class="skill-chip" data-level="autonome" data-activities="annuaire,stocks"><img src="Images/Logos/Développement/BasesDeDonnes/Logo_BD_SQL.png"                     alt="" loading="lazy" decoding="async">Langage SQL</span>
+              <span class="skill-chip" data-level="autonome" data-activities="annuaire,annuaire-v2,stocks"><img src="Images/Logos/Développement/BasesDeDonnes/Logo_BD_MySQL.webp"                  alt="" loading="lazy" decoding="async">MySQL</span>
+              <span class="skill-chip" data-level="autonome"><img src="Images/Logos/Développement/BasesDeDonnes/Logo_BD_phpMyAdmin.png"              alt="" loading="lazy" decoding="async">phpMyAdmin</span>
+              <span class="skill-chip" data-level="autonome"><img src="Images/Logos/Développement/BasesDeDonnes/Logo_BD_MicrosoftSQLServer.png"      alt="" loading="lazy" decoding="async">SQL Server</span>
+              <span class="skill-chip" data-level="autonome"><img src="Images/Logos/Développement/BasesDeDonnes/Logo_SSMS.png"                       alt="" loading="lazy" decoding="async">SSMS</span>
+              <span class="skill-chip" data-level="debutant"><img src="Images/Logos/Développement/BasesDeDonnes/Logo_Dbeaver.png"                    alt="" loading="lazy" decoding="async">DBeaver</span>
+            </div>
+          </div>
+
+          <!-- IA / Agentique -->
+          <div class="reveal">
+            <p class="skill-category-title">IA / Agentique</p>
+            <div class="skills-grid">
+              <span class="skill-chip" data-level="avance" data-activities="servym,octagames,candym"><img src="Images/Logos/IA/Logo_ClaudeCode.png"  alt="" loading="lazy" decoding="async">Claude Code</span>
+              <span class="skill-chip" data-level="avance" data-activities="servym,octagames,candym"><img src="Images/Logos/IA/Logo_Antigravity.png" alt="" loading="lazy" decoding="async">Antigravity</span>
+              <span class="skill-chip" data-level="avance" data-activities="servym,octagames,candym"><img src="Images/Logos/IA/Logo_OpenCode.png"    alt="" loading="lazy" decoding="async">OpenCode</span>
+              <span class="skill-chip" data-level="avance" data-activities="servym,octagames,candym"><img src="Images/Logos/IA/Logo_T3Code.png"      alt="" loading="lazy" decoding="async">T3 Code</span>
+            </div>
+            <div class="skill-subline">
+              <span class="skill-subline-label">// Modèles</span>
+              <span class="skill-model-tag">Opus 5.5 Orchestrator Sonnet 5.5</span>
+              <span class="skill-model-tag">Gemini 4 Neon Orchestrator Gemini 4 Hydrogen</span>
+            </div>
+          </div>
+
+          <!-- Versioning -->
+          <div class="reveal reveal-d1">
+            <p class="skill-category-title">Versioning</p>
+            <div class="skills-grid">
+              <span class="skill-chip" data-level="autonome" data-activities="octagames,portfolio,servym"><img src="Images/Logos/Développement/Outils/Logo_GIT.png"    alt="" loading="lazy" decoding="async">Git</span>
+              <span class="skill-chip" data-level="autonome" data-activities="octagames,portfolio,servym"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</span>
+            </div>
+          </div>
+
+          <!-- IDEs & Éditeurs -->
+          <div class="reveal">
+            <p class="skill-category-title">IDEs &amp; Éditeurs</p>
+            <div class="skills-grid">
+              <span class="skill-chip" data-level="avance" data-activities="portfolio"><img src="Images/Logos/Développement/IDEs/Logo_VisualStudioCode.png"         alt="" loading="lazy" decoding="async">VS Code</span>
+              <span class="skill-chip" data-level="autonome"><img src="Images/Logos/Développement/IDEs/Logo_JetbrainsRider.png"           alt="" loading="lazy" decoding="async">JetBrains Rider</span>
+              <span class="skill-chip" data-level="debutant"><img src="Images/Logos/Développement/IDEs/Logo_VisualStudio.png"             alt="" loading="lazy" decoding="async">Visual Studio</span>
+              <span class="skill-chip" data-level="debutant"><img src="Images/Logos/Développement/Virtualisation/Logo_AndroidStudio.png"  alt="" loading="lazy" decoding="async">Android Studio</span>
+              <span class="skill-chip" data-level="debutant"><img src="Images/Logos/Développement/IDEs/Logo_SublimeText.png"              alt="" loading="lazy" decoding="async">Sublime Text</span>
+            </div>
+          </div>
+
+          <!-- Virtualisation -->
+          <div class="reveal reveal-d2">
+            <p class="skill-category-title">Virtualisation &amp; Infra</p>
+            <div class="skills-grid">
+              <span class="skill-chip" data-level="debutant"><img src="Images/Logos/Développement/Virtualisation/LogoVirtualBox.png"  alt="" loading="lazy" decoding="async">VirtualBox</span>
+              <span class="skill-chip" data-level="autonome"><img src="Images/Logos/Développement/Virtualisation/LogoVMWare.png"      alt="" loading="lazy" decoding="async">VMware</span>
+              <span class="skill-chip" data-level="autonome" data-activities="erasmove,bogue"><img src="Images/Logos/Développement/Virtualisation/Logo_Docker.png"     alt="" loading="lazy" decoding="async">Docker</span>
+              <span class="skill-chip" data-level="autonome" data-activities="annuaire"><img src="Images/Logos/Développement/LangagesDeProgrammation/Logo_WampServer.png"  alt="" loading="lazy" decoding="async">WampServer</span>
+            </div>
+          </div>
+
+          <!-- Linux -->
+          <div class="reveal">
+            <p class="skill-category-title">Linux</p>
+            <div class="skills-grid">
+              <span class="skill-chip" data-level="avance" data-activities="fedora"><img src="Images/Logos/Linux/Logo_Linux_Fedora.png" alt="" loading="lazy" decoding="async">Fedora</span>
+              <span class="skill-chip" data-level="debutant" data-activities="kali"><img src="Images/Logos/Linux/Logo_Linux_Kali.png"   alt="" loading="lazy" decoding="async">Kali Linux</span>
+              <span class="skill-chip" data-level="debutant" data-activities="ubuntu"><img src="Images/Logos/Linux/Logo_Linux_Ubuntu.png" alt="" loading="lazy" decoding="async">Ubuntu</span>
+              <span class="skill-chip" data-level="debutant" data-activities="debian"><img src="Images/Logos/Linux/Logo_Linux_Debian.png" alt="" loading="lazy" decoding="async">Debian</span>
+            </div>
+          </div>
+
+          <!-- Outils ITSM -->
+          <div class="reveal">
+            <p class="skill-category-title">Outils ITSM</p>
+            <div class="skills-grid">
+              <span class="skill-chip" data-level="autonome" data-activities="glpi,support"><img src="Images/Logos/Développement/Logo_GLPI.png" alt="" loading="lazy" decoding="async">GLPI</span>
+            </div>
+          </div>
+
+          <!-- Cybersécurité -->
+          <div class="reveal reveal-d1">
+            <p class="skill-category-title">Cybersécurité</p>
+            <div class="skills-grid">
+              <span class="skill-chip" data-level="avance" data-activities="certif-rgpd"><img src="Images/Logos/Competences_Cybersécurité/Logo_RGPD.png"           alt="" loading="lazy" decoding="async">RGPD</span>
+              <span class="skill-chip" data-level="avance" data-activities="certif-anssi"><img src="Images/Logos/Competences_Cybersécurité/Logo_Cyber_ANSSI.png"    alt="" loading="lazy" decoding="async">ANSSI (MOOC)</span>
+              <span class="skill-chip" data-level="autonome"><img src="Images/Logos/Competences_Cybersécurité/Logo_Cyber_RootME.png"   alt="" loading="lazy" decoding="async">Root Me</span>
+              <span class="skill-chip" data-level="autonome"><img src="Images/Logos/Competences_Cybersécurité/Logo_Cadena.png"         alt="" loading="lazy" decoding="async">Cryptologie</span>
+            </div>
+          </div>
+
+          <!-- Suite Office -->
+          <div class="reveal reveal-d2">
+            <p class="skill-category-title">Suite Office</p>
+            <div class="skills-grid">
+              <span class="skill-chip" data-level="autonome"><img src="Images/Logos/Office/Logo_Office_Word.png"        alt="" loading="lazy" decoding="async">Word</span>
+              <span class="skill-chip" data-level="autonome" data-activities="synthese"><img src="Images/Logos/Office/Logo_Office_Excel.png"       alt="" loading="lazy" decoding="async">Excel</span>
+              <span class="skill-chip" data-level="autonome"><img src="Images/Logos/Office/Logo_Office_PowerPoint.png"  alt="" loading="lazy" decoding="async">PowerPoint</span>
+              <span class="skill-chip" data-level="avance"><img src="Images/Logos/Office/Logo_Office_Outlook.png"     alt="" loading="lazy" decoding="async">Outlook</span>
+              <span class="skill-chip" data-level="avance"><img src="Images/Logos/Office/Logo_Office_MSTeams.png"     alt="" loading="lazy" decoding="async">Teams</span>
+            </div>
+          </div>
+
+          <!-- Langues -->
+          <div class="reveal">
+            <p class="skill-category-title">Langues</p>
+            <div class="skills-grid">
+              <span class="skill-chip" data-level="expert"><img src="Images/Logos/LanguesParlées/Drapeau_France.png"     alt="" loading="lazy" decoding="async">Français — natif</span>
+              <span class="skill-chip" data-level="expert"><img src="Images/Logos/LanguesParlées/Drapeau_Angleterre.png" alt="" loading="lazy" decoding="async">Anglais — C1</span>
+              <span class="skill-chip" data-level="debutant"><img src="Images/Logos/LanguesParlées/Drapeau_Espagne.svg" alt="" loading="lazy" decoding="async">Espagnol</span>
+            </div>
+          </div>
+
+          <!-- Soft Skills -->
+          <div class="reveal reveal-d1">
+            <p class="skill-category-title">Soft Skills</p>
+            <div class="skills-grid">
+              <span class="skill-chip" data-level="avance" data-activities="support"><img src="Images/Logos/SoftSkills/Logo_TravailEnEquipe.png" alt="" loading="lazy" decoding="async">Travail en équipe</span>
+              <span class="skill-chip" data-level="avance" data-activities="annuaire,stocks"><img src="Images/Logos/SoftSkills/Autonomie.png"            alt="" loading="lazy" decoding="async">Autonomie</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-sep">
+
+    <!-- ─── Expérience ─── -->
+    <section class="section" id="experience">
+      <div class="container">
+        <p class="section-label reveal">Terrain</p>
+        <h2 class="section-title reveal">Expérience <span class="acc">professionnelle</span></h2>
+        <div class="section-divider reveal"></div>
+        <div class="timeline">
+
+          <div class="timeline-item reveal">
+            <p class="timeline-date">26 mai 2025 — 27 juin 2025</p>
+            <p class="timeline-title">Stage de 1ère année BTS SIO</p>
+            <p class="timeline-org">
+              <img src="Images/Logos/Formation-Education/SeineNormandieAgglomération.png" alt="" loading="lazy" decoding="async">
+              Seine Normandie Agglomération
+            </p>
+            <a href="Pieces_Jointes/Rapport_De_Stage1.pdf" class="timeline-link" target="_blank">
+              <img class="timeline-link-icon" src="Images/Logos/Office/Logo_PDF.svg" alt="PDF" loading="lazy" decoding="async"> Rapport de stage
+            </a>
+          </div>
+
+          <div class="timeline-item reveal reveal-d1">
+            <p class="timeline-date">5 janvier 2026 — 13 février 2026</p>
+            <p class="timeline-title">Stage de 2ème année BTS SIO</p>
+            <p class="timeline-org">
+              <img src="Images/Logos/Formation-Education/SeineNormandieAgglomération.png" alt="" loading="lazy" decoding="async">
+              Seine Normandie Agglomération
+            </p>
+            <a href="Pieces_Jointes/Rapport_De_Stage2.pdf" class="timeline-link" target="_blank">
+              <img class="timeline-link-icon" src="Images/Logos/Office/Logo_PDF.svg" alt="PDF" loading="lazy" decoding="async"> Rapport de stage
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="container home-cta reveal">
+      <a href="realisations.html" class="btn btn-cta">
+        <span>Voir mes réalisations</span>
+        <span class="cta-arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
+
+  </div><!-- end .page-wrapper -->
+
+  <!-- Visionneuse d'images -->
+  <div class="shot-viewer" id="shot-viewer" role="dialog" aria-modal="true" aria-label="Image agrandie">
+    <button class="shot-viewer-close" type="button">✕ Fermer</button>
+    <figure>
+      <img src="" alt="" loading="lazy" decoding="async">
+      <figcaption></figcaption>
+    </figure>
+  </div>
+
+  <footer>
+    <p>Hugo CANU — BTS SIO SLAM 2024–2027 &nbsp;·&nbsp; <a href="https://github.com/HCWhite1" target="_blank">GitHub</a></p>
+  </footer>
+
+  <a href="#" id="back-to-top" aria-label="Retour en haut">
+    <svg viewBox="0 0 14 14" fill="none"><path d="M7 11V3M3 7l4-4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+
+  <script src="js/competences.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
