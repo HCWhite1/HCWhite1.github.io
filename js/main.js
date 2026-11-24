@@ -28,6 +28,118 @@ function bindOverlay(el, onClose) {
   };
 }
 
+// ─── Thème (Mode sombre par défaut / clair optionnel) ──
+const THEME_KEY = 'hc_theme';
+
+function isLightTheme() {
+  return document.documentElement.dataset.theme === 'light';
+}
+
+function initThemeToggle() {
+  const navBtn = $('theme-toggle');
+  const orbBtn = $('theme-orb');
+  const triggers = [navBtn, orbBtn].filter(Boolean);
+  if (!triggers.length) return;
+
+  const orbLabel = orbBtn?.querySelector('.theme-orb-label');
+
+  const sync = () => {
+    const light = isLightTheme();
+    const ariaLabel = light ? 'Activer le mode sombre' : 'Activer le mode clair';
+    const shortLabel = light ? 'Mode sombre' : 'Mode clair';
+    triggers.forEach(btn => {
+      btn.setAttribute('aria-pressed', String(light));
+      btn.setAttribute('aria-label', ariaLabel);
+      if (btn === navBtn) btn.title = shortLabel;
+    });
+    if (orbLabel) orbLabel.textContent = shortLabel;
+  };
+
+  const applyTheme = nextLight => {
+    if (nextLight) document.documentElement.dataset.theme = 'light';
+    else delete document.documentElement.dataset.theme;
+    try { localStorage.setItem(THEME_KEY, nextLight ? 'light' : 'dark'); } catch {}
+    sync();
+    document.dispatchEvent(new CustomEvent('themechange', { detail: { theme: nextLight ? 'light' : 'dark' } }));
+  };
+
+  const spawnWarpRing = (x, y, r) => {
+    const ring = document.createElement('span');
+    ring.className = 'theme-warp-ring';
+    ring.style.setProperty('--warp-x', `${x}px`);
+    ring.style.setProperty('--warp-y', `${y}px`);
+    ring.style.setProperty('--warp-r', `${r}px`);
+    document.body.appendChild(ring);
+    ring.addEventListener('animationend', () => ring.remove(), { once: true });
+    setTimeout(() => ring.remove(), 900);
+  };
+
+  const toggleWithWarp = originBtn => {
+    const nextLight = !isLightTheme();
+    if (REDUCED_MOTION) {
+      applyTheme(nextLight);
+      return;
+    }
+
+    const rect = originBtn.getBoundingClientRect();
+    const x = Math.round(rect.left + rect.width / 2);
+    const y = Math.round(rect.top + rect.height / 2);
+    const r = Math.ceil(Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y)
+    ));
+    const root = document.documentElement;
+    root.style.setProperty('--warp-x', `${x}px`);
+    root.style.setProperty('--warp-y', `${y}px`);
+    root.style.setProperty('--warp-r', `${r}px`);
+
+    if (typeof document.startViewTransition === 'function') {
+      const transition = document.startViewTransition(() => applyTheme(nextLight));
+      transition.ready.then(() => spawnWarpRing(x, y, r)).catch(() => {});
+    } else {
+      applyTheme(nextLight);
+      spawnWarpRing(x, y, r);
+    }
+  };
+
+  sync();
+  triggers.forEach(btn => btn.addEventListener('click', () => toggleWithWarp(btn)));
+
+  // Rangement de l'orbe pile dans le bouton de la navbar dès qu'on scroll sur l'accueil
+  if (orbBtn && navBtn) {
+    let ticking = false;
+    const measureDock = () => {
+      const cs = getComputedStyle(orbBtn);
+      const restTop = parseFloat(cs.top) || 0;
+      const restRight = parseFloat(cs.right) || 0;
+      const navRect = navBtn.getBoundingClientRect();
+      const compactCx = window.innerWidth - restRight - navRect.width / 2;
+      const compactCy = restTop + navRect.height / 2;
+      const dx = Math.round((navRect.left + navRect.width / 2) - compactCx);
+      const dy = Math.round((navRect.top + navRect.height / 2) - compactCy);
+      orbBtn.style.setProperty('--dock-dx', `${dx}px`);
+      orbBtn.style.setProperty('--dock-dy', `${dy}px`);
+    };
+    const updateDock = () => {
+      ticking = false;
+      const docked = window.scrollY > 110;
+      if (docked !== document.body.classList.contains('orb-docked')) {
+        measureDock();
+        document.body.classList.toggle('orb-docked', docked);
+      }
+    };
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(updateDock);
+    };
+    measureDock();
+    document.body.classList.toggle('orb-docked', window.scrollY > 110);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', measureDock, { passive: true });
+  }
+}
+
 // ─── Matrix Rain (rAF + pause onglet masqué) ────
 function initMatrix() {
   const canvas = $('matrix-canvas');
@@ -36,8 +148,29 @@ function initMatrix() {
   const FONT = 13, STEP_MS = 55, SPEED = 0.45;
   const CHARS = '01{}[]()<>/\\|=+-*$@#~ABCDEFabcdef';
   const STORAGE_KEY = 'hc_matrix_state';
+  const PALETTES = {
+    dark: {
+      bg: '#0a0a0a',
+      fade: 'rgba(10,10,10,0.055)',
+      preFade: 'rgba(10,10,10,0.08)',
+      head: 'rgba(0,255,136,0.92)',
+      tail: 'rgba(0,255,136,0.16)',
+      preHead: 'rgba(0,255,136,0.85)',
+      preTail: 'rgba(0,255,136,0.18)',
+    },
+    light: {
+      bg: '#f6f7f9',
+      fade: 'rgba(246,247,249,0.06)',
+      preFade: 'rgba(246,247,249,0.08)',
+      head: 'rgba(37,99,235,0.88)',
+      tail: 'rgba(37,99,235,0.18)',
+      preHead: 'rgba(37,99,235,0.8)',
+      preTail: 'rgba(37,99,235,0.18)',
+    },
+  };
   let cols = 0, drops = null, rafId = 0, lastTs = 0;
 
+  const getPalette = () => isLightTheme() ? PALETTES.light : PALETTES.dark;
   const randChar = () => CHARS[(Math.random() * CHARS.length) | 0];
 
   function loadState(targetCols, maxRows) {
@@ -63,12 +196,13 @@ function initMatrix() {
   }
 
   function prewarmTrails() {
-    ctx.fillStyle = '#0a0a0a';
+    const p = getPalette();
+    ctx.fillStyle = p.bg;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     for (let step = 20; step >= 1; step--) {
-      ctx.fillStyle = 'rgba(10,10,10,0.08)';
+      ctx.fillStyle = p.preFade;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = step === 1 ? 'rgba(0,255,136,0.75)' : 'rgba(0,255,136,0.14)';
+      ctx.fillStyle = step === 1 ? p.preHead : p.preTail;
       for (let i = 0; i < cols; i++) {
         const y = (drops[i] - step * SPEED) * FONT;
         if (y >= 0 && y <= canvas.height) ctx.fillText(randChar(), i * FONT, y);
@@ -84,19 +218,25 @@ function initMatrix() {
     const maxRows = Math.ceil(canvas.height / FONT);
     const restored = loadState(cols, maxRows);
     drops = restored || Array.from({ length: cols }, () => Math.random() * -60);
-    if (restored || REDUCED_MOTION) prewarmTrails();
+    if (restored || REDUCED_MOTION) {
+      prewarmTrails();
+    } else {
+      ctx.fillStyle = getPalette().bg;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
   }
 
   function draw() {
-    ctx.fillStyle = 'rgba(10,10,10,0.055)';
+    const p = getPalette();
+    ctx.fillStyle = p.fade;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    ctx.fillStyle = 'rgba(0,255,136,0.85)';
+    ctx.fillStyle = p.head;
     for (let i = 0; i < cols; i++) {
       const y = drops[i] * FONT;
       if (y >= 0) ctx.fillText(randChar(), i * FONT, y);
     }
-    ctx.fillStyle = 'rgba(0,255,136,0.1)';
+    ctx.fillStyle = p.tail;
     for (let i = 0; i < cols; i++) {
       const y = drops[i] * FONT;
       if (y >= 0) ctx.fillText(randChar(), i * FONT, y - FONT);
@@ -112,6 +252,9 @@ function initMatrix() {
   }
 
   setup();
+  document.addEventListener('themechange', () => {
+    if (drops) prewarmTrails();
+  });
   if (REDUCED_MOTION) return;
 
   rafId = requestAnimationFrame(loop);
@@ -433,6 +576,7 @@ function initSectionSpy() {
 
 // ─── Init ───────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
+  initThemeToggle();
   initMatrix();
   initReveal();
   initSectionSpy();
