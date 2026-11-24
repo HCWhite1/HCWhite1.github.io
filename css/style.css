@@ -93,6 +93,18 @@
   --matrix-opacity: 0.34;
 }
 
+/* ─── Logos blancs adaptés en version sombre pour le light mode ─── */
+[data-theme="light"] img[src*="Logo_Framework_Symfony"],
+[data-theme="light"] img[src*="Logo_Express.svg"],
+[data-theme="light"] img[src*="Logo_Rust.svg"],
+[data-theme="light"] img[src*="Logo_SocketIO.svg"],
+[data-theme="light"] img[src*="Logo_Render.svg"] {
+  filter: brightness(0) saturate(100%) opacity(0.88);
+}
+[data-theme="light"] img[src*="Logo_Cyber_RootME"] {
+  filter: invert(1) hue-rotate(180deg);
+}
+
 html { scroll-behavior: smooth; font-size: clamp(17px, 1.1vw, 22px); }
 
 body {
