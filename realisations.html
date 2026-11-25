@@ -56,10 +56,31 @@
 
       <!-- ─── Grille de réalisations ─── -->
       <section class="section">
+
+        <!-- Filtres Type & Statut -->
+        <div class="realisations-filters" id="realisations-filters" role="region" aria-label="Filtrer les réalisations">
+          <div class="filter-group" role="group" aria-label="Filtrer par type">
+            <span class="filter-label">// Type</span>
+            <button type="button" class="filter-pill active" data-filter-group="type" data-filter-value="all" aria-pressed="true">Tous</button>
+            <button type="button" class="filter-pill pill-perso" data-filter-group="type" data-filter-value="perso" aria-pressed="false">Perso</button>
+            <button type="button" class="filter-pill pill-stage" data-filter-group="type" data-filter-value="stage" aria-pressed="false">Stage</button>
+            <button type="button" class="filter-pill pill-formation" data-filter-group="type" data-filter-value="formation" aria-pressed="false">Formation</button>
+          </div>
+          <span class="filter-sep" aria-hidden="true"></span>
+          <div class="filter-group" role="group" aria-label="Filtrer par statut">
+            <span class="filter-label">// Statut</span>
+            <button type="button" class="filter-pill active" data-filter-group="status" data-filter-value="all" aria-pressed="true">Tous</button>
+            <button type="button" class="filter-pill pill-deployed" data-filter-group="status" data-filter-value="deployed" aria-pressed="false"><svg aria-hidden="true"><use href="#ic-deployed"/></svg>Déployé</button>
+            <button type="button" class="filter-pill pill-deployable" data-filter-group="status" data-filter-value="deployable" aria-pressed="false"><svg aria-hidden="true"><use href="#ic-deployable"/></svg>Déployable</button>
+            <button type="button" class="filter-pill pill-local" data-filter-group="status" data-filter-value="local" aria-pressed="false"><svg aria-hidden="true"><use href="#ic-local"/></svg>Local</button>
+          </div>
+          <span class="filter-count" id="realisations-count" aria-live="polite">9 / 9</span>
+        </div>
+
         <div class="realisations-grid">
 
           <!-- Servym -->
-          <div class="realisation-card reveal" data-modal="servym">
+          <div class="realisation-card reveal" data-modal="servym" data-type="perso" data-status="deployable">
             <span class="realisation-status status-deployable" data-tooltip="Déployable" aria-label="Déployable"><svg aria-hidden="true"><use href="#ic-deployable"/></svg></span>
             <span class="realisation-badge type-perso">Personnel</span>
             <div class="realisation-img-placeholder is-stack">
@@ -69,8 +90,8 @@
             </div>
             <div class="realisation-body">
               <p class="realisation-tag">B1.4 · B1.5 · B1.6</p>
-              <p class="realisation-title">Servym — Tableau de bord local</p>
-              <p class="realisation-desc">Tableau de bord desktop (Rust / Tauri 2) pour gérer ses projets locaux.</p>
+              <p class="realisation-title">Servym — Gestionnaire de services</p>
+              <p class="realisation-desc">Gestionnaire de services desktop &amp; web (Rust / Tauri 2 / Axum) pour piloter et superviser ses projets.</p>
               <div class="realisation-footer">
                 <span class="realisation-date">2026 — En cours</span>
                 <button class="btn-details" data-modal="servym">Voir les détails →</button>
@@ -79,7 +100,7 @@
           </div>
 
           <!-- OctaGames -->
-          <div class="realisation-card reveal reveal-d1" data-modal="octagames">
+          <div class="realisation-card reveal reveal-d1" data-modal="octagames" data-type="perso" data-status="deployed">
             <span class="realisation-status status-deployed" data-tooltip="Déployé — en ligne" aria-label="Déployé"><svg aria-hidden="true"><use href="#ic-deployed"/></svg></span>
             <span class="realisation-badge type-perso">Personnel</span>
             <div class="realisation-img-placeholder is-light">
@@ -97,7 +118,7 @@
           </div>
 
           <!-- Candym -->
-          <div class="realisation-card reveal reveal-d2" data-modal="candym">
+          <div class="realisation-card reveal reveal-d2" data-modal="candym" data-type="perso" data-status="local">
             <span class="realisation-status status-local" data-tooltip="Local — exécuté sur poste" aria-label="Local"><svg aria-hidden="true"><use href="#ic-local"/></svg></span>
             <span class="realisation-badge type-perso">Personnel</span>
             <div class="realisation-img-placeholder"><img src="Images/Realisations/candym-preview.png" alt="Candym — Suivi de candidatures" loading="lazy" decoding="async"></div>
@@ -113,7 +134,7 @@
           </div>
 
           <!-- Gestion des stocks — DNI -->
-          <div class="realisation-card reveal reveal-d2" data-modal="stocks">
+          <div class="realisation-card reveal reveal-d2" data-modal="stocks" data-type="stage" data-status="deployed">
             <span class="realisation-status status-deployed" data-tooltip="Déployé — en production" aria-label="Déployé"><svg aria-hidden="true"><use href="#ic-deployed"/></svg></span>
             <span class="realisation-badge type-stage">Stage</span>
             <div class="realisation-img-placeholder"><img src="Images/Stages/Stage2/stocks-tableau-de-bord.png" alt="Gestion des stocks DNI" loading="lazy" decoding="async"></div>
@@ -129,7 +150,7 @@
           </div>
 
           <!-- Annuaire -->
-          <div class="realisation-card reveal reveal-d2" data-modal="annuaire">
+          <div class="realisation-card reveal reveal-d2" data-modal="annuaire" data-type="stage" data-status="deployed">
             <span class="realisation-status status-deployed" data-tooltip="Déployé — en production" aria-label="Déployé"><svg aria-hidden="true"><use href="#ic-deployed"/></svg></span>
             <span class="realisation-badge type-stage">Stage</span>
             <div class="realisation-img-placeholder"><img src="Images/Realisations/LOGO_SEINENORMANDIE.png" alt="Seine Normandie Agglomération" loading="lazy" decoding="async"></div>
@@ -145,7 +166,7 @@
           </div>
 
           <!-- Erasmove -->
-          <div class="realisation-card reveal" data-modal="erasmove">
+          <div class="realisation-card reveal" data-modal="erasmove" data-type="formation" data-status="local">
             <span class="realisation-status status-local" data-tooltip="Local — exécuté sur poste" aria-label="Local"><svg aria-hidden="true"><use href="#ic-local"/></svg></span>
             <span class="realisation-badge type-formation">Formation</span>
             <div class="realisation-img-placeholder is-stack">
@@ -168,7 +189,7 @@
           </div>
 
           <!-- Portfolio -->
-          <div class="realisation-card reveal reveal-d2" data-modal="portfolio">
+          <div class="realisation-card reveal reveal-d2" data-modal="portfolio" data-type="formation" data-status="deployed">
             <span class="realisation-status status-deployed" data-tooltip="Déployé — en ligne" aria-label="Déployé"><svg aria-hidden="true"><use href="#ic-deployed"/></svg></span>
             <span class="realisation-badge type-formation">Formation</span>
             <div class="realisation-img-placeholder is-portfolio">
@@ -188,7 +209,7 @@
           </div>
 
           <!-- Veille -->
-          <div class="realisation-card reveal" data-modal="veille">
+          <div class="realisation-card reveal" data-modal="veille" data-type="formation" data-status="deployed">
             <span class="realisation-status status-deployed" data-tooltip="Déployé — en ligne" aria-label="Déployé"><svg aria-hidden="true"><use href="#ic-deployed"/></svg></span>
             <span class="realisation-badge type-formation">Formation</span>
             <div class="realisation-img-placeholder is-logos">
@@ -208,7 +229,7 @@
           </div>
 
           <!-- GLPI -->
-          <div class="realisation-card reveal reveal-d1" data-modal="glpi">
+          <div class="realisation-card reveal reveal-d1" data-modal="glpi" data-type="stage">
             <span class="realisation-badge type-stage">Stage</span>
             <div class="realisation-img-placeholder"><img src="Images/Realisations/LOGO_GLPI.png" alt="GLPI" loading="lazy" decoding="async"></div>
             <div class="realisation-body">
@@ -222,6 +243,11 @@
             </div>
           </div>
 
+        </div>
+
+        <div class="realisations-empty" id="realisations-empty" hidden>
+          <p>Aucune réalisation ne correspond à ces filtres.</p>
+          <button type="button" class="btn btn-outline" id="realisations-reset">Réinitialiser les filtres</button>
         </div>
       </section>
 
@@ -834,8 +860,8 @@
 
       'servym': {
         stage: 'B1.4 · B1.5 · B1.6 — Personnel',
-        title: 'Servym — Tableau de bord local',
-        description: "Application de bureau légère (Windows & Linux) écrite en Rust avec Tauri 2 et Axum pour démarrer, surveiller et arrêter ses projets de développement locaux (Node, PHP, Python, sites statiques, bases de données), avec la même interface accessible dans le navigateur sur localhost:9000.",
+        title: 'Servym — Gestionnaire de services',
+        description: "Application légère (Windows & Linux, desktop ou serveur headless déployable) écrite en Rust avec Tauri 2 et Axum pour démarrer, surveiller et arrêter ses projets (Node, PHP, Python, sites statiques, bases de données), avec interface web, comptes RBAC et intégration OAuth GitHub.",
         image: '',
         video: 'Images/Realisations/servym-promo.mp4',
         repo: 'https://github.com/HCWhite1/Servym',

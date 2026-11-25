@@ -574,6 +574,55 @@ function initSectionSpy() {
   window.addEventListener('load', () => { measure(); update(); });
 }
 
+// ─── Filtres (Réalisations) ─────────────────────
+function initRealisationFilters() {
+  const bar = $('realisations-filters');
+  const grid = document.querySelector('.realisations-grid');
+  if (!bar || !grid) return;
+
+  const cards = [...grid.querySelectorAll('.realisation-card')];
+  const pills = [...bar.querySelectorAll('.filter-pill')];
+  const countEl = $('realisations-count');
+  const emptyEl = $('realisations-empty');
+  const resetBtn = $('realisations-reset');
+  const state = { type: 'all', status: 'all' };
+
+  function apply() {
+    let visible = 0;
+    cards.forEach(card => {
+      const matchType = state.type === 'all' || card.dataset.type === state.type;
+      const matchStatus = state.status === 'all' || card.dataset.status === state.status;
+      const show = matchType && matchStatus;
+      card.hidden = !show;
+      if (show) {
+        visible++;
+        card.classList.add('visible');
+      }
+    });
+    pills.forEach(pill => {
+      const active = state[pill.dataset.filterGroup] === pill.dataset.filterValue;
+      pill.classList.toggle('active', active);
+      pill.setAttribute('aria-pressed', String(active));
+    });
+    if (countEl) countEl.textContent = `${visible} / ${cards.length}`;
+    if (emptyEl) emptyEl.hidden = visible > 0;
+  }
+
+  bar.addEventListener('click', e => {
+    const pill = e.target.closest('.filter-pill');
+    if (!pill) return;
+    const { filterGroup: group, filterValue: value } = pill.dataset;
+    state[group] = state[group] === value && value !== 'all' ? 'all' : value;
+    apply();
+  });
+
+  resetBtn?.addEventListener('click', () => {
+    state.type = 'all';
+    state.status = 'all';
+    apply();
+  });
+}
+
 // ─── Init ───────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   initThemeToggle();
@@ -582,6 +631,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSectionSpy();
   initTabHash();
   initModals();
+  initRealisationFilters();
   initNewsArticles();
   initShots();
   initCode();

@@ -80,10 +80,10 @@ const ACTIVITIES = {
     href: 'realisations.html#octagames',
   },
   servym: {
-    label: 'Servym — Tableau de bord local', type: 'perso', period: '2026 — en cours',
+    label: 'Servym — Gestionnaire de services', type: 'perso', period: '2026 — en cours',
     codes: 'B1.4 · B1.5 · B1.6',
     usage: {
-      default:       'Application desktop Rust / Tauri 2 / Axum de gestion de projets locaux',
+      default:       'Gestionnaire de services desktop & web déployable (Rust / Tauri 2 / Axum)',
       'claude-code': 'Développement assisté par agent IA (Opus 5.5 Orchestrator Sonnet 5.5)',
       antigravity:   'Orchestration agentique et édition assistée (Gemini 4 Neon Orchestrator Gemini 4 Hydrogen)',
     },
