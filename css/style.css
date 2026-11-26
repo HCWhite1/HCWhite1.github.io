@@ -50,39 +50,39 @@
 
 [data-theme="light"] {
   color-scheme: light;
-  --bg:           #f6f7f9;
-  --bg-card:      #ffffff;
-  --bg-elevated:  #eef1f4;
-  --border:       #dde2e8;
-  --border-hover: #c4cdd6;
+  --bg:           #ffffff;
+  --bg-card:      #dae2ec;
+  --bg-elevated:  #ccd6e3;
+  --border:       #b4c2d3;
+  --border-hover: #94a6bc;
   --accent:       #2563eb;
-  --accent-dim:   rgba(37, 99, 235, 0.08);
-  --accent-glow:  rgba(37, 99, 235, 0.22);
-  --accent-border: rgba(37, 99, 235, 0.35);
-  --accent-border-strong: rgba(37, 99, 235, 0.48);
+  --accent-dim:   rgba(37, 99, 235, 0.11);
+  --accent-glow:  rgba(37, 99, 235, 0.24);
+  --accent-border: rgba(37, 99, 235, 0.38);
+  --accent-border-strong: rgba(37, 99, 235, 0.52);
   --accent-text:  #ffffff;
   --cta-hover:    #1d4ed8;
-  --text:         #2d333b;
-  --text-bright:  #0f1419;
-  --text-muted:   #656d76;
-  --text-dim:     #4b5563;
-  --nav-bg:       rgba(246, 247, 249, 0.9);
-  --nav-mobile-bg: rgba(246, 247, 249, 0.97);
-  --nav-mobile-sep: rgba(0, 0, 0, 0.06);
-  --scrollbar-thumb: #c4cdd6;
-  --terminal-bg:  #ffffff;
-  --terminal-header: #eef1f4;
-  --popover-header: #eef1f4;
-  --popover-shadow: 0 10px 28px rgba(15, 20, 25, 0.14);
-  --spy-bg:       rgba(255, 255, 255, 0.86);
+  --text:         #222933;
+  --text-bright:  #0b111a;
+  --text-muted:   #525c68;
+  --text-dim:     #3b4452;
+  --nav-bg:       rgba(255, 255, 255, 0.9);
+  --nav-mobile-bg: rgba(255, 255, 255, 0.97);
+  --nav-mobile-sep: rgba(0, 0, 0, 0.08);
+  --scrollbar-thumb: #a3b2c4;
+  --terminal-bg:  #dae2ec;
+  --terminal-header: #cbd5e2;
+  --popover-header: #cbd5e2;
+  --popover-shadow: 0 10px 28px rgba(15, 20, 25, 0.16);
+  --spy-bg:       rgba(218, 226, 236, 0.92);
   --badge-bg:     rgba(255, 255, 255, 0.92);
   --badge-shadow: 0 2px 8px rgba(15, 20, 25, 0.12);
   --tooltip-bg:   rgba(15, 20, 25, 0.92);
   --tooltip-text: #f8fafc;
   --overlay-bg:   rgba(15, 20, 25, 0.55);
   --viewer-bg:    rgba(15, 20, 25, 0.88);
-  --media-bg:     #e5e9ef;
-  --stack-bg:     linear-gradient(135deg, #eef1f4, #e3e8ee);
+  --media-bg:     #ccd6e3;
+  --stack-bg:     linear-gradient(135deg, #ccd6e3, #becad9);
   --type-formation: #0f766e;
   --type-formation-border: rgba(15, 118, 110, 0.35);
   --type-perso:   #b45309;
@@ -90,7 +90,7 @@
   --type-local:   #6d28d9;
   --type-local-border: rgba(109, 40, 217, 0.35);
   --tok-s:        #0f766e;
-  --matrix-opacity: 0.34;
+  --matrix-opacity: 0.56;
 }
 
 /* ─── Logos blancs adaptés en version sombre pour le light mode ─── */
@@ -103,6 +103,15 @@
 }
 [data-theme="light"] img[src*="Logo_Cyber_RootME"] {
   filter: invert(1) hue-rotate(180deg);
+}
+/* Logos sur fond blanc opaque : fusion transparente sur les cartes grises en light mode */
+[data-theme="light"] img[src*="Logo_Filiere_STI2D"],
+[data-theme="light"] img[src*="Logo_ConcoursCastor"],
+[data-theme="light"] img[src*="Logo_Cesi"],
+[data-theme="light"] img[src*="Logo_Chataigneraie"],
+[data-theme="light"] img[src*="SeineNormandieAgglom"],
+[data-theme="light"] img[src*="LogoVeilleTechno_Outils_GoogleAlerts"] {
+  mix-blend-mode: multiply;
 }
 
 html { scroll-behavior: smooth; font-size: clamp(17px, 1.1vw, 22px); }

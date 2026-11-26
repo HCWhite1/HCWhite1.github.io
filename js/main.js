@@ -159,13 +159,13 @@ function initMatrix() {
       preTail: 'rgba(0,255,136,0.18)',
     },
     light: {
-      bg: '#f6f7f9',
-      fade: 'rgba(246,247,249,0.06)',
-      preFade: 'rgba(246,247,249,0.08)',
-      head: 'rgba(37,99,235,0.88)',
-      tail: 'rgba(37,99,235,0.18)',
-      preHead: 'rgba(37,99,235,0.8)',
-      preTail: 'rgba(37,99,235,0.18)',
+      bg: '#ffffff',
+      fade: 'rgba(255,255,255,0.032)',
+      preFade: 'rgba(255,255,255,0.045)',
+      head: 'rgba(29,78,216,1)',
+      tail: 'rgba(29,78,216,0.38)',
+      preHead: 'rgba(29,78,216,0.95)',
+      preTail: 'rgba(29,78,216,0.34)',
     },
   };
   let cols = 0, drops = null, rafId = 0, lastTs = 0;
